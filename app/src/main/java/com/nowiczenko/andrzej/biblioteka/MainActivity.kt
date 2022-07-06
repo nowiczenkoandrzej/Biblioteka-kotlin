@@ -5,6 +5,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.nowiczenko.andrzej.api.ApiInterfaceUsers
 import kotlinx.android.synthetic.main.activity_main.*
 import retrofit2.*
@@ -16,14 +17,15 @@ const val BASE_URL = "https://biblioteka-gsoft.herokuapp.com/"
 class MainActivity : AppCompatActivity() {
 
     lateinit var users: List<UserItem>
-    var userId: Int? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
         getUsers()
-        setButtonsListeners()
+        setListeners()
+
+
 
     }
 
@@ -50,7 +52,7 @@ class MainActivity : AppCompatActivity() {
         })
     }
 
-    private fun setButtonsListeners(){
+    private fun setListeners(){
         setLoginClickListener()
         setRegisterClickListener()
     }
@@ -77,8 +79,8 @@ class MainActivity : AppCompatActivity() {
         button_register.setOnClickListener {
             val registerIntent = Intent(this, RegisterActivity::class.java)
             startActivity(registerIntent)
-        }
 
+        }
     }
 
 }

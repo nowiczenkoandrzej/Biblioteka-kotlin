@@ -49,5 +49,6 @@ dependencies {
     implementation 'com.jakewharton.retrofit:retrofit2-kotlin-coroutines-adapter:0.9.2'
     implementation "androidx.recyclerview:recyclerview-selection:1.1.0"
     implementation 'com.google.android.material:material:1.6.1'
+    implementation 'androidx.swiperefreshlayout:swiperefreshlayout:1.1.0'
 
 }

@@ -24,8 +24,10 @@ class RegisterActivity : AppCompatActivity() {
     }
 
     private fun createAccount(){
-        if(isUserNameFree() && arePasswordsSame())
+        if(isUserNameFree() && arePasswordsSame()) {
             Toast.makeText(this, "tworzenie konta", Toast.LENGTH_SHORT).show()
+            register()
+        }
     }
 
     private fun isUserNameFree(): Boolean {
@@ -82,6 +84,29 @@ class RegisterActivity : AppCompatActivity() {
 
             override fun onFailure(call: Call<List<UserItem>?>, t: Throwable) {
                 println(t.message)
+            }
+        })
+    }
+
+    private fun register(){
+        val api = Retrofit
+            .Builder()
+            .addConverterFactory(GsonConverterFactory.create())
+            .baseUrl(BASE_URL)
+            .build()
+            .create(ApiInterfaceUsers::class.java)
+
+
+
+        val call = api.pushUser(UserItem(0,edit_text_register_password.text.toString(), edit_text_register_login.text.toString()))
+
+        call.enqueue(object : Callback<UserItem?> {
+            override fun onResponse(call: Call<UserItem?>, response: Response<UserItem?>) {
+                finish()
+            }
+
+            override fun onFailure(call: Call<UserItem?>, t: Throwable) {
+                TODO("Not yet implemented")
             }
         })
     }
