@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">Biblioteka</string>
+    <string name="book_cover_prefix">Type of cover</string>
+</resources>

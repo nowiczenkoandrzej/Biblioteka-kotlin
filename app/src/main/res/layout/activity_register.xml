@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#B2DFDB"
+    android:orientation="vertical"
+    tools:context=".RegisterActivity">
+
+    <TextView
+        android:id="@+id/text_view_register"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="80dp"
+        android:fontFamily="sans-serif-medium"
+        android:text="Rejestracja"
+        android:textColor="#444444"
+        android:textSize="48sp" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/text_input_layout_register_login"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/text_view_register"
+        android:layout_marginTop="80dp"
+        android:hint="Podaj login"
+        android:paddingLeft="48dp"
+        android:paddingRight="48dp">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/edit_text_register_login"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:text="artur" />
+
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/text_input_layout_register_password"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/text_input_layout_register_login"
+        android:layout_marginTop="12dp"
+        android:hint="Podaj hasło"
+        android:paddingLeft="48dp"
+        android:paddingRight="48dp">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/edit_text_register_password"
+            android:layout_width="match_parent"
+
+            android:layout_height="match_parent"
+            tools:text="artur" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/text_input_layout_register_repeat_password"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/text_input_layout_register_password"
+        android:layout_marginTop="12dp"
+        android:hint="Powtórz hasło"
+        android:paddingLeft="48dp"
+        android:paddingRight="48dp">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/edit_text_register_repeat_password"
+            android:layout_width="match_parent"
+
+            android:layout_height="match_parent"
+            tools:text="artur" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/button_create_account"
+        android:layout_width="wrap_content"
+
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/text_input_layout_register_repeat_password"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="40dp"
+        android:layout_marginEnd="48dp"
+        app:cardCornerRadius="8dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:fontFamily="sans-serif-medium"
+            android:text="Załóż konto"
+            android:textSize="20sp" />
+
+    </androidx.cardview.widget.CardView>
+
+
+</RelativeLayout>
