@@ -1,15 +1,15 @@
-package com.nowiczenko.andrzej.biblioteka
+package com.nowiczenko.andrzej.activities
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
-import com.nowiczenko.andrzej.api.ApiInterfaceUsers
+import com.nowiczenko.andrzej.api.MyApi
+import com.nowiczenko.andrzej.biblioteka.R
+import com.nowiczenko.andrzej.biblioteka.UserItem
 import kotlinx.android.synthetic.main.activity_register.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import retrofit2.Retrofit
-import retrofit2.converter.gson.GsonConverterFactory
 
 
 class RegisterActivity : AppCompatActivity() {
@@ -21,12 +21,15 @@ class RegisterActivity : AppCompatActivity() {
 
         getUsers()
         setListener()
+
     }
 
     private fun createAccount(){
         if(isUserNameFree() && arePasswordsSame()) {
             Toast.makeText(this, "tworzenie konta", Toast.LENGTH_SHORT).show()
             register()
+        } else {
+
         }
     }
 
@@ -66,13 +69,8 @@ class RegisterActivity : AppCompatActivity() {
         }
     }
     private fun getUsers(){
-        val api = Retrofit.Builder()
-            .addConverterFactory(GsonConverterFactory.create())
-            .baseUrl(BASE_URL)
-            .build()
-            .create(ApiInterfaceUsers::class.java)
 
-        val retrofitUsers = api.getUser()
+        val retrofitUsers = MyApi().getUser()
 
         retrofitUsers.enqueue(object : Callback<List<UserItem>?> {
             override fun onResponse(
@@ -89,16 +87,8 @@ class RegisterActivity : AppCompatActivity() {
     }
 
     private fun register(){
-        val api = Retrofit
-            .Builder()
-            .addConverterFactory(GsonConverterFactory.create())
-            .baseUrl(BASE_URL)
-            .build()
-            .create(ApiInterfaceUsers::class.java)
 
-
-
-        val call = api.pushUser(UserItem(0,edit_text_register_password.text.toString(), edit_text_register_login.text.toString()))
+        val call = MyApi().pushUser(UserItem(0,edit_text_register_password.text.toString(), edit_text_register_login.text.toString()))
 
         call.enqueue(object : Callback<UserItem?> {
             override fun onResponse(call: Call<UserItem?>, response: Response<UserItem?>) {
@@ -106,7 +96,7 @@ class RegisterActivity : AppCompatActivity() {
             }
 
             override fun onFailure(call: Call<UserItem?>, t: Throwable) {
-                TODO("Not yet implemented")
+                println(t.message)
             }
         })
     }

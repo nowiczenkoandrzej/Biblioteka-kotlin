@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="#B2DFDB"
     android:orientation="vertical"
-    tools:context=".RegisterActivity">
+    tools:context="com.nowiczenko.andrzej.activities.RegisterActivity">
 
     <TextView
         android:id="@+id/text_view_register"

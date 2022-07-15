@@ -1,0 +1,171 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#B2DFDB"
+    android:id="@+id/add_new_book_root"
+    tools:context="com.nowiczenko.andrzej.activities.AddNewBookActivity">
+
+
+
+    <TextView
+        android:id="@+id/text_view_add_new_book"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="30dp"
+        android:fontFamily="sans-serif-medium"
+        android:text="Dodaj nową książkę"
+        android:textSize="32sp" />
+
+    <ImageView
+        android:id="@+id/image_view_add_new_book"
+        android:layout_width="160dp"
+        android:layout_height="232dp"
+        android:layout_below="@+id/text_view_add_new_book"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="20dp"
+        android:elevation="4dp"
+        android:src="@drawable/ic_baseline_add_a_photo" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/text_input_layout_books_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_toEndOf="@+id/image_view_add_new_book"
+        android:layout_below="@+id/text_view_add_new_book"
+        android:hint="Podaj tytuł książki"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="12dp">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/edit_text_books_title"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:text="harry potter" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/text_input_layout_books_author"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_toEndOf="@+id/image_view_add_new_book"
+        android:layout_below="@+id/text_input_layout_books_title"
+        android:layout_marginTop="8dp"
+        android:hint="Podaj autora książki"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/edit_text_books_author"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:text="j.k. rowling" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <Spinner
+        android:id="@+id/spinner_cover_type"
+        android:layout_width="match_parent"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_toEndOf="@+id/image_view_add_new_book"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/text_input_layout_books_author"
+        android:layout_marginTop="8dp"
+        tools:listitem="@android:layout/simple_list_item_1" />
+
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/text_input_layout_books_publisher"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_toEndOf="@+id/image_view_add_new_book"
+        android:layout_below="@+id/spinner_cover_type"
+        android:layout_marginTop="8dp"
+        android:hint="Podaj wydawce książki"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/edit_text_books_publisher"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:text="Nowa era" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/text_input_layout_date_of_release"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_toEndOf="@+id/image_view_add_new_book"
+        android:layout_below="@+id/text_input_layout_books_publisher"
+        android:layout_marginTop="8dp"
+        android:hint="Wydano: (rrrr-mm-dd)"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/edit_text_date_of_release"
+            android:layout_width="match_parent"
+            android:inputType="date"
+            android:layout_height="match_parent"
+            tools:text="" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/text_input_layout_date_of_publishing"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_toEndOf="@+id/image_view_add_new_book"
+        android:layout_below="@+id/text_input_layout_date_of_release"
+        android:layout_marginTop="8dp"
+        android:hint="Opublikowano: (rrrr-mm-dd)"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/edit_text_date_of_publishing"
+            android:layout_width="match_parent"
+            android:inputType="date"
+            android:layout_height="match_parent"
+            tools:text="" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/text_input_layout_amount_of_pages"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_toEndOf="@+id/image_view_add_new_book"
+        android:layout_below="@+id/text_input_layout_date_of_publishing"
+        android:layout_marginTop="8dp"
+        android:hint="Ilość stron"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/edit_text_amount_of_pages"
+            android:layout_width="match_parent"
+            android:inputType="number"
+            android:layout_height="match_parent"
+            tools:text="" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Opublikuj"
+        android:id="@+id/button_publish"
+        android:layout_alignStart="@+id/image_view_add_new_book"
+        android:layout_below="@+id/image_view_add_new_book"
+        android:layout_alignEnd="@id/image_view_add_new_book"
+        android:layout_marginTop="12dp"/>
+
+</RelativeLayout>

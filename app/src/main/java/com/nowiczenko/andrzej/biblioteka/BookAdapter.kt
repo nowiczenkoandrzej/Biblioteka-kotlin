@@ -1,6 +1,6 @@
 package com.nowiczenko.andrzej.biblioteka
 
-import android.content.Context
+
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,7 +11,7 @@ import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.row_items.view.*
 
 
-class BookAdapter(val context: Context, val bookList: List<BookItem>) :
+class BookAdapter(val bookList: List<BookItem>) :
     RecyclerView.Adapter<BookAdapter.ViewHolder>() {
 
     private val picasso = Picasso.get()
@@ -24,7 +24,7 @@ class BookAdapter(val context: Context, val bookList: List<BookItem>) :
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val itemView = LayoutInflater.from(context).inflate(R.layout.row_items, parent, false)
+        val itemView = LayoutInflater.from(parent.context).inflate(R.layout.row_items, parent, false)
         return ViewHolder(itemView)
     }
 
@@ -41,7 +41,7 @@ class BookAdapter(val context: Context, val bookList: List<BookItem>) :
         holder.dateOfRelease.text = "Data wydania: " + bookList[position].dateOfRelease
         holder.dateOfPublishing.text = "Data publikacji: " + getPublishingDate(position)
         holder.amountOfPages.text = "Ilość stron: " + bookList[position].amountOfPages.toString()
-        holder.user.text = "Dodano przez: " + bookList[position].user.toString()
+        holder.user.text = "Dodano przez: " + getUsernameById(bookList[position].user.toString())
 
     }
 
@@ -61,7 +61,6 @@ class BookAdapter(val context: Context, val bookList: List<BookItem>) :
         var amountOfPages: TextView
         var user: TextView
         var bookImage: ImageView
-
 
         init {
             bookTitle = itemView.text_view_book_title

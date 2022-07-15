@@ -5,14 +5,18 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
-import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
-import com.nowiczenko.andrzej.api.ApiInterfaceUsers
+import com.nowiczenko.andrzej.activities.MenuActivity
+import com.nowiczenko.andrzej.activities.RegisterActivity
+import com.nowiczenko.andrzej.api.MyApi
 import kotlinx.android.synthetic.main.activity_main.*
 import retrofit2.*
-import retrofit2.converter.gson.GsonConverterFactory
+
 
 
 const val BASE_URL = "https://biblioteka-gsoft.herokuapp.com/"
+
+lateinit var userId: String
+lateinit var userName: String
 
 class MainActivity : AppCompatActivity() {
 
@@ -25,18 +29,17 @@ class MainActivity : AppCompatActivity() {
         getUsers()
         setListeners()
 
-
-
     }
 
-    private fun getUsers(){
-        val api = Retrofit.Builder()
-            .addConverterFactory(GsonConverterFactory.create())
-            .baseUrl(BASE_URL)
-            .build()
-            .create(ApiInterfaceUsers::class.java)
+    override fun onStart() {
+        super.onStart()
+        getUsers()
+    }
 
-        val retrofitUsers = api.getUser()
+
+    private fun getUsers(){
+
+        val retrofitUsers = MyApi().getUser()
 
         retrofitUsers.enqueue(object : Callback<List<UserItem>?> {
             override fun onResponse(
@@ -52,6 +55,16 @@ class MainActivity : AppCompatActivity() {
         })
     }
 
+    private fun loginValidation(user: UserItem): Boolean{
+        if (user.username.equals(edit_text_login.text.toString()) &&
+                user.password.equals(edit_text_password.text.toString())){
+            return true
+        } else{
+            Toast.makeText(this, "Nieprawidłowe dane logowanie", Toast.LENGTH_SHORT).show()
+            return false
+        }
+    }
+
     private fun setListeners(){
         setLoginClickListener()
         setRegisterClickListener()
@@ -61,17 +74,15 @@ class MainActivity : AppCompatActivity() {
         button_login.setOnClickListener {
             for(user in users){
                 if (loginValidation(user)){
-                    Toast.makeText(this,"zalogowano", Toast.LENGTH_SHORT).show()
+                    val intent = Intent(this, MenuActivity::class.java)
+                    userId = user.id.toString()
+                    userName = user.username
+                    startActivity(intent)
                     break
                 }
             }
-            Toast.makeText(this,"nie udalo sie zalogowac", Toast.LENGTH_SHORT).show()
-        }
-    }
 
-    private fun loginValidation(user: UserItem): Boolean{
-        return user.username.equals(edit_text_login.text.toString()) &&
-                user.password.equals(edit_text_password.text.toString())
+        }
     }
 
     private fun setRegisterClickListener(){
@@ -82,5 +93,4 @@ class MainActivity : AppCompatActivity() {
 
         }
     }
-
 }
