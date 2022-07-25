@@ -31,7 +31,6 @@ class UploadRequestBody(
 
     override fun contentLength() = image.length()
 
-
     override fun writeTo(sink: BufferedSink) {
         val length = image.length()
         val buffer = ByteArray(DEFAULT_BUFFER_SIZE)

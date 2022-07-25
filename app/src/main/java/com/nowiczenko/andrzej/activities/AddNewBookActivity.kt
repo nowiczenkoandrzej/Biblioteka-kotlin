@@ -6,7 +6,6 @@ import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.ArrayAdapter
-import android.widget.ImageView
 import android.widget.Toast
 import com.nowiczenko.andrzej.api.MyApi
 import com.nowiczenko.andrzej.api.PostBookItem
@@ -68,8 +67,6 @@ class AddNewBookActivity : AppCompatActivity(), UploadRequestBody.UploadCallback
         if(requestCode == IMAGE_REQUEST_CODE && resultCode == RESULT_OK){
             imageUri = data?.data
             image_view_add_new_book.setImageURI(imageUri)
-
-
         }
     }
 

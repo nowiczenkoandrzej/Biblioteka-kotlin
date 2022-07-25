@@ -56,13 +56,8 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun loginValidation(user: UserItem): Boolean{
-        if (user.username.equals(edit_text_login.text.toString()) &&
-                user.password.equals(edit_text_password.text.toString())){
-            return true
-        } else{
-            Toast.makeText(this, "Nieprawidłowe dane logowanie", Toast.LENGTH_SHORT).show()
-            return false
-        }
+        return user.username.equals(edit_text_login.text.toString()) &&
+                user.password.equals(edit_text_password.text.toString())
     }
 
     private fun setListeners(){
@@ -78,9 +73,10 @@ class MainActivity : AppCompatActivity() {
                     userId = user.id.toString()
                     userName = user.username
                     startActivity(intent)
-                    break
+                    return@setOnClickListener
                 }
             }
+            Toast.makeText(this, "Nieprawidłowe dane logowanie", Toast.LENGTH_SHORT).show()
 
         }
     }

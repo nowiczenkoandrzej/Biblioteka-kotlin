@@ -68,6 +68,7 @@ class RegisterActivity : AppCompatActivity() {
             createAccount()
         }
     }
+
     private fun getUsers(){
 
         val retrofitUsers = MyApi().getUser()
@@ -100,6 +101,5 @@ class RegisterActivity : AppCompatActivity() {
             }
         })
     }
-
 
 }
