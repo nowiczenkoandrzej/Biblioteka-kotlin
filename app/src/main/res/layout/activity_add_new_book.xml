@@ -1,170 +1,159 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#B2DFDB"
+    android:elevation="16dp"
+    app:cardBackgroundColor="#B2DFDB"
+    app:cardCornerRadius="8dp"
     tools:context="com.nowiczenko.andrzej.activities.AddNewBookActivity">
 
-
-
-    <TextView
-        android:id="@+id/text_view_add_new_book"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="30dp"
-        android:fontFamily="sans-serif-medium"
-        android:text="Dodaj nową książkę"
-        android:textSize="32sp" />
-
-    <ImageView
-        android:id="@+id/image_view_add_new_book"
-        android:layout_width="160dp"
-        android:layout_height="232dp"
-        android:layout_below="@+id/text_view_add_new_book"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="20dp"
-        android:elevation="4dp"
-        android:src="@drawable/ic_baseline_add_a_photo" />
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/text_input_layout_books_title"
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_toEndOf="@+id/image_view_add_new_book"
-        android:layout_below="@+id/text_view_add_new_book"
-        android:hint="Podaj tytuł książki"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp">
+        android:layout_height="match_parent">
 
-        <com.google.android.material.textfield.TextInputEditText
+        <TextView
+            android:id="@+id/text_view_add_new_book"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="30dp"
+            android:fontFamily="sans-serif-medium"
+            android:text="Dodaj nową książkę"
+            android:textSize="32sp" />
+
+        <View
+            android:layout_below="@+id/text_view_add_new_book"
+            android:layout_width="match_parent"
+            android:layout_margin="20dp"
+            android:layout_height="1dp"
+            android:background="@android:color/darker_gray"/>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/card_view_book_cover"
+            android:layout_width="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="40dp"
+            app:cardBackgroundColor="#4DB6AC"
+            app:cardCornerRadius="8dp"
+            android:elevation="4dp"
+            android:layout_below="@+id/text_view_add_new_book"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/image_view_add_new_book"
+                android:layout_width="160dp"
+                android:layout_margin="4dp"
+                android:layout_height="232dp"
+                android:src="@drawable/ic_baseline_add_a_photo" />
+        </androidx.cardview.widget.CardView>
+
+        <EditText
             android:id="@+id/edit_text_books_title"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            tools:text="harry potter" />
+            android:layout_alignTop="@+id/card_view_book_cover"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/text_view_add_new_book"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_toEndOf="@+id/card_view_book_cover"
+            android:hint="Podaj tytuł książki"
+            android:inputType="textCapWords" />
 
-    </com.google.android.material.textfield.TextInputLayout>
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/text_input_layout_books_author"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_toEndOf="@+id/image_view_add_new_book"
-        android:layout_below="@+id/text_input_layout_books_title"
-        android:layout_marginTop="8dp"
-        android:hint="Podaj autora książki"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp">
-
-        <com.google.android.material.textfield.TextInputEditText
+        <EditText
             android:id="@+id/edit_text_books_author"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            tools:text="j.k. rowling" />
-
-    </com.google.android.material.textfield.TextInputLayout>
-
-    <Spinner
-        android:id="@+id/spinner_cover_type"
-        android:layout_width="match_parent"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_toEndOf="@+id/image_view_add_new_book"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/text_input_layout_books_author"
-        android:layout_marginTop="8dp"
-        tools:listitem="@android:layout/simple_list_item_1" />
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/edit_text_books_title"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_toEndOf="@+id/card_view_book_cover"
+            android:hint="Podaj autora książki"
+            android:inputType="textCapWords" />
 
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/text_input_layout_books_publisher"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_toEndOf="@+id/image_view_add_new_book"
-        android:layout_below="@+id/spinner_cover_type"
-        android:layout_marginTop="8dp"
-        android:hint="Podaj wydawce książki"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp">
+        <Spinner
+            android:id="@+id/spinner_cover_type"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/edit_text_books_author"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_toEndOf="@+id/card_view_book_cover"
+            tools:listitem="@android:layout/simple_list_item_1" />
 
-        <com.google.android.material.textfield.TextInputEditText
+
+        <EditText
             android:id="@+id/edit_text_books_publisher"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            tools:text="Nowa era" />
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/spinner_cover_type"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_toEndOf="@+id/card_view_book_cover"
+            android:hint="Podaj wydawce książki"
+            android:inputType="textCapWords" />
 
-    </com.google.android.material.textfield.TextInputLayout>
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/text_input_layout_date_of_release"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_toEndOf="@+id/image_view_add_new_book"
-        android:layout_below="@+id/text_input_layout_books_publisher"
-        android:layout_marginTop="8dp"
-        android:hint="Wydano: (rrrr-mm-dd)"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp">
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/edit_text_date_of_release"
+        <TextView
+            android:id="@+id/text_view_date_of_release"
             android:layout_width="match_parent"
-            android:inputType="date"
-            android:layout_height="match_parent"
-            tools:text="" />
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/edit_text_books_publisher"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_toEndOf="@+id/card_view_book_cover"
+            android:hint="Data Wydania"
+            android:textSize="18sp" />
 
-    </com.google.android.material.textfield.TextInputLayout>
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/text_input_layout_date_of_publishing"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_toEndOf="@+id/image_view_add_new_book"
-        android:layout_below="@+id/text_input_layout_date_of_release"
-        android:layout_marginTop="8dp"
-        android:hint="Opublikowano: (rrrr-mm-dd)"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp">
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/edit_text_date_of_publishing"
+        <View
+            android:layout_below="@+id/text_view_date_of_release"
             android:layout_width="match_parent"
-            android:inputType="date"
-            android:layout_height="match_parent"
-            tools:text="" />
+            android:layout_toEndOf="@id/card_view_book_cover"
+            android:layout_height="1dp"
+            android:layout_marginStart="12dp"
+            android:layout_marginEnd="12dp"
+            android:background="#433F3F"/>
 
-    </com.google.android.material.textfield.TextInputLayout>
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/text_input_layout_amount_of_pages"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_toEndOf="@+id/image_view_add_new_book"
-        android:layout_below="@+id/text_input_layout_date_of_publishing"
-        android:layout_marginTop="8dp"
-        android:hint="Ilość stron"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp">
-
-        <com.google.android.material.textfield.TextInputEditText
+        <EditText
             android:id="@+id/edit_text_amount_of_pages"
             android:layout_width="match_parent"
-            android:inputType="number"
-            android:layout_height="match_parent"
-            tools:text="" />
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/text_view_date_of_release"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_toEndOf="@+id/card_view_book_cover"
+            android:hint="Ilość stron"
+            android:inputType="number" />
 
-    </com.google.android.material.textfield.TextInputLayout>
+        <View
+            android:layout_below="@+id/edit_text_amount_of_pages"
+            android:layout_width="match_parent"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginTop="40dp"
+            android:layout_height="1dp"
+            android:background="@android:color/darker_gray"/>
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Opublikuj"
-        android:id="@+id/button_publish"
-        android:layout_alignStart="@+id/image_view_add_new_book"
-        android:layout_below="@+id/image_view_add_new_book"
-        android:layout_alignEnd="@id/image_view_add_new_book"
-        android:layout_marginTop="12dp"/>
 
-</RelativeLayout>
+        <Button
+            android:id="@+id/button_publish"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/card_view_book_cover"
+            android:layout_alignStart="@+id/card_view_book_cover"
+            android:layout_alignEnd="@id/card_view_book_cover"
+            android:layout_marginTop="12dp"
+            android:text="Opublikuj" />
+    </RelativeLayout>
+
+
+</androidx.cardview.widget.CardView>

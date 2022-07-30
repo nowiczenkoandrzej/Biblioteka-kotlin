@@ -1,7 +1,6 @@
 package com.nowiczenko.andrzej.fragments
 
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -15,16 +14,14 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
 import retrofit2.await
 
 
 class UserFragment : Fragment() {
 
-    lateinit var bookAdapter: BookAdapter
-    lateinit var recyclerView: RecyclerView
+    private lateinit var bookAdapter: BookAdapter
+    private lateinit var recyclerView: RecyclerView
+    private var isListEmpty = true
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -36,17 +33,11 @@ class UserFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         getBooksRequest()
-        setMessage()
     }
 
     override fun onStart() {
         super.onStart()
         getBooksRequest()
-        setMessage()
-    }
-
-    private fun setMessage(){
-        text_view_user_panel.text = "Witaj ${getUsernameById(userId)}, oto Twoje książki:"
     }
 
     private fun getBooksRequest() {
@@ -64,6 +55,7 @@ class UserFragment : Fragment() {
             val usersBooksList = getUsersBooks(books)
             bookAdapter = BookAdapter(usersBooksList)
             recyclerView.adapter = bookAdapter
+            recyclerView.isNestedScrollingEnabled
         }
     }
 
@@ -74,6 +66,19 @@ class UserFragment : Fragment() {
                 resultList.add(book)
             }
         }
+        isListEmpty = resultList.isEmpty()
+        setMessage()
         return resultList
     }
+
+    private fun setMessage(){
+        val textEnding =
+            if(isListEmpty)
+                "nie dodałeś jeszcze żadnej książki"
+            else
+                "oto twoje książki:"
+
+        text_view_user_panel.text = "Witaj ${getUsernameById(userId)}, $textEnding"
+    }
+
 }

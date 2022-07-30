@@ -80,7 +80,7 @@
     </com.google.android.material.textfield.TextInputLayout>
 
 
-    <androidx.cardview.widget.CardView
+    <Button
         android:id="@+id/button_create_account"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -88,17 +88,12 @@
         android:layout_centerInParent="true"
         android:layout_marginTop="40dp"
         android:layout_marginEnd="48dp"
-        app:cardCornerRadius="8dp">
+        android:text="Załóż konto"
+        >
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="8dp"
-            android:fontFamily="sans-serif-medium"
-            android:text="Załóż konto"
-            android:textSize="20sp" />
 
-    </androidx.cardview.widget.CardView>
+
+    </Button>
 
 
 </RelativeLayout>
