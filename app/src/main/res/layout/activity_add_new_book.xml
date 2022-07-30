@@ -3,7 +3,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#B2DFDB"
-    android:id="@+id/add_new_book_root"
     tools:context="com.nowiczenko.andrzej.activities.AddNewBookActivity">
 
 

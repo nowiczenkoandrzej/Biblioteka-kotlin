@@ -15,12 +15,16 @@ import com.nowiczenko.andrzej.biblioteka.getFileName
 import com.nowiczenko.andrzej.biblioteka.snackbar
 import com.nowiczenko.andrzej.biblioteka.userId
 import kotlinx.android.synthetic.main.activity_add_new_book.*
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import okhttp3.MediaType
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import retrofit2.await
 import java.io.File
 import java.io.FileInputStream
 import java.io.FileOutputStream
@@ -76,14 +80,14 @@ class AddNewBookActivity : AppCompatActivity(), UploadRequestBody.UploadCallback
 
     private fun uploadBook(){
         if(imageUri == null){
-            add_new_book_root.snackbar("Musisz wybrać obraz")
+            Toast.makeText(this, "Musisz wybrać obraz", Toast.LENGTH_SHORT).show()
             return
         }
 
+        if(!postValidation()) return
+
         val parcelFileDescriptor = contentResolver.openFileDescriptor(imageUri!!, "r", null) ?: return
-
         val file = File(cacheDir, contentResolver.getFileName(imageUri!!))
-
         val inputStream = FileInputStream(parcelFileDescriptor.fileDescriptor)
         val outputStream = FileOutputStream(file)
 
@@ -91,50 +95,104 @@ class AddNewBookActivity : AppCompatActivity(), UploadRequestBody.UploadCallback
 
         val body = UploadRequestBody(file,"image", this)
 
-        if(postValidation()) {
-            MyApi().postBook(
-                RequestBody.create(
-                    MediaType.parse("multipart/form-data"),
-                    edit_text_books_title.text.toString()
-                ),
-                RequestBody.create(
-                    MediaType.parse("multipart/form-data"),
-                    edit_text_books_author.text.toString()
-                ),
-                RequestBody.create(
-                    MediaType.parse("multipart/form-data"),
-                    spinner_cover_type.selectedItem.toString()
-                ),
-                RequestBody.create(
-                    MediaType.parse("multipart/form-data"),
-                    edit_text_books_publisher.text.toString()
-                ),
-                RequestBody.create(
-                    MediaType.parse("multipart/form-data"),
-                    edit_text_date_of_release.text.toString()
-                ),
-                RequestBody.create(
-                    MediaType.parse("multipart/form-data"),
-                    edit_text_date_of_publishing.text.toString()
-                ),
-                RequestBody.create(
-                    MediaType.parse("multipart/form-data"),
-                    edit_text_amount_of_pages.text.toString()
-                ),
-                MultipartBody.Part.createFormData("image", file.name, body),
-                RequestBody.create(MediaType.parse("multipart/form-data"), userId)
-            ).enqueue(object : Callback<PostBookItem?> {
-                override fun onResponse(
-                    call: Call<PostBookItem?>,
-                    response: Response<PostBookItem?>
-                ) {
-                    finish()
-                }
+        MyApi().postBook(
+            RequestBody.create(
+                MediaType.parse("multipart/form-data"),
+                edit_text_books_title.text.toString()
+            ),
+            RequestBody.create(
+                MediaType.parse("multipart/form-data"),
+                edit_text_books_author.text.toString()
+            ),
+            RequestBody.create(
+                MediaType.parse("multipart/form-data"),
+                spinner_cover_type.selectedItem.toString()
+            ),
+            RequestBody.create(
+                MediaType.parse("multipart/form-data"),
+                edit_text_books_publisher.text.toString()
+            ),
+            RequestBody.create(
+                MediaType.parse("multipart/form-data"),
+                edit_text_date_of_release.text.toString()
+            ),
+            RequestBody.create(
+                MediaType.parse("multipart/form-data"),
+                edit_text_date_of_publishing.text.toString()
+            ),
+            RequestBody.create(
+                MediaType.parse("multipart/form-data"),
+                edit_text_amount_of_pages.text.toString()
+            ),
+            MultipartBody.Part.createFormData("image", file.name, body),
+            RequestBody.create(MediaType.parse("multipart/form-data"), userId)
+        ).enqueue(object : Callback<PostBookItem?> {
+            override fun onResponse(
+                call: Call<PostBookItem?>,
+                response: Response<PostBookItem?>
+            ) {
+                finish()
+            }
 
-                override fun onFailure(call: Call<PostBookItem?>, t: Throwable) {
-                    finish()
-                }
-            })
+            override fun onFailure(call: Call<PostBookItem?>, t: Throwable) {
+                finish()
+            }
+        })
+
+    }
+
+    private fun uploadBookRequest(){
+        if(imageUri == null){
+            Toast.makeText(this, "Musisz wybrać obraz", Toast.LENGTH_SHORT).show()
+            return
+        }
+
+        if(!postValidation()) return
+
+        val parcelFileDescriptor = contentResolver.openFileDescriptor(imageUri!!, "r", null) ?: return
+        val file = File(cacheDir, contentResolver.getFileName(imageUri!!))
+        val inputStream = FileInputStream(parcelFileDescriptor.fileDescriptor)
+        val outputStream = FileOutputStream(file)
+
+        inputStream.copyTo(outputStream)
+
+        val body = UploadRequestBody(file,"image", this)
+
+        CoroutineScope(Dispatchers.IO).launch {
+
+                MyApi().postBook(
+                    RequestBody.create(
+                        MediaType.parse("multipart/form-data"),
+                        edit_text_books_title.text.toString()
+                    ),
+                    RequestBody.create(
+                        MediaType.parse("multipart/form-data"),
+                        edit_text_books_author.text.toString()
+                    ),
+                    RequestBody.create(
+                        MediaType.parse("multipart/form-data"),
+                        spinner_cover_type.selectedItem.toString()
+                    ),
+                    RequestBody.create(
+                        MediaType.parse("multipart/form-data"),
+                        edit_text_books_publisher.text.toString()
+                    ),
+                    RequestBody.create(
+                        MediaType.parse("multipart/form-data"),
+                        edit_text_date_of_release.text.toString()
+                    ),
+                    RequestBody.create(
+                        MediaType.parse("multipart/form-data"),
+                        edit_text_date_of_publishing.text.toString()
+                    ),
+                    RequestBody.create(
+                        MediaType.parse("multipart/form-data"),
+                        edit_text_amount_of_pages.text.toString()
+                    ),
+                    MultipartBody.Part.createFormData("image", file.name, body),
+                    RequestBody.create(MediaType.parse("multipart/form-data"), userId)
+                ).await()
+            finish()
         }
 
     }

@@ -9,6 +9,9 @@ import com.nowiczenko.andrzej.activities.MenuActivity
 import com.nowiczenko.andrzej.activities.RegisterActivity
 import com.nowiczenko.andrzej.api.MyApi
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import retrofit2.*
 
 
@@ -26,33 +29,21 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        getUsers()
+        getUsersRequest()
         setListeners()
 
     }
 
     override fun onStart() {
         super.onStart()
-        getUsers()
+        getUsersRequest()
     }
 
 
-    private fun getUsers(){
-
-        val retrofitUsers = MyApi().getUser()
-
-        retrofitUsers.enqueue(object : Callback<List<UserItem>?> {
-            override fun onResponse(
-                call: Call<List<UserItem>?>,
-                response: Response<List<UserItem>?>
-            ) {
-                users = response.body()!!
-            }
-
-            override fun onFailure(call: Call<List<UserItem>?>, t: Throwable) {
-                println(t.message)
-            }
-        })
+    private fun getUsersRequest(){
+        CoroutineScope(Dispatchers.IO).launch {
+            users = MyApi().getUser().await()
+        }
     }
 
     private fun loginValidation(user: UserItem): Boolean{

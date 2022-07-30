@@ -7,9 +7,13 @@ import com.nowiczenko.andrzej.api.MyApi
 import com.nowiczenko.andrzej.biblioteka.R
 import com.nowiczenko.andrzej.biblioteka.UserItem
 import kotlinx.android.synthetic.main.activity_register.*
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import retrofit2.await
 
 
 class RegisterActivity : AppCompatActivity() {
@@ -19,7 +23,7 @@ class RegisterActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_register)
 
-        getUsers()
+        getUsersRequest()
         setListener()
 
     }
@@ -27,9 +31,7 @@ class RegisterActivity : AppCompatActivity() {
     private fun createAccount(){
         if(isUserNameFree() && arePasswordsSame()) {
             Toast.makeText(this, "tworzenie konta", Toast.LENGTH_SHORT).show()
-            register()
-        } else {
-
+            registerRequest()
         }
     }
 
@@ -69,37 +71,24 @@ class RegisterActivity : AppCompatActivity() {
         }
     }
 
-    private fun getUsers(){
 
-        val retrofitUsers = MyApi().getUser()
-
-        retrofitUsers.enqueue(object : Callback<List<UserItem>?> {
-            override fun onResponse(
-                call: Call<List<UserItem>?>,
-                response: Response<List<UserItem>?>
-            ) {
-                users = response.body()!!
-            }
-
-            override fun onFailure(call: Call<List<UserItem>?>, t: Throwable) {
-                println(t.message)
-            }
-        })
+    private fun getUsersRequest(){
+        CoroutineScope(Dispatchers.IO).launch {
+            users = MyApi().getUser().await()
+        }
     }
 
-    private fun register(){
-
-        val call = MyApi().pushUser(UserItem(0,edit_text_register_password.text.toString(), edit_text_register_login.text.toString()))
-
-        call.enqueue(object : Callback<UserItem?> {
-            override fun onResponse(call: Call<UserItem?>, response: Response<UserItem?>) {
-                finish()
-            }
-
-            override fun onFailure(call: Call<UserItem?>, t: Throwable) {
-                println(t.message)
-            }
-        })
+    private fun registerRequest(){
+        CoroutineScope(Dispatchers.IO).launch {
+            MyApi()
+                .pushUser(UserItem(
+                    0,
+                    edit_text_register_password.text.toString()
+                    , edit_text_register_login.text.toString())
+                )
+                .await()
+        }
+        finish()
     }
 
 }

@@ -11,9 +11,14 @@ import androidx.recyclerview.widget.RecyclerView
 import com.nowiczenko.andrzej.api.MyApi
 import com.nowiczenko.andrzej.biblioteka.*
 import kotlinx.android.synthetic.main.fragment_user.*
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import retrofit2.await
 
 
 class UserFragment : Fragment() {
@@ -30,38 +35,36 @@ class UserFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        getBooks()
+        getBooksRequest()
         setMessage()
     }
 
     override fun onStart() {
         super.onStart()
-        getBooks()
+        getBooksRequest()
         setMessage()
     }
 
-    private fun getBooks() {
+    private fun setMessage(){
+        text_view_user_panel.text = "Witaj ${getUsernameById(userId)}, oto Twoje książki:"
+    }
 
-        val retrofitBooks = MyApi().getBook()
+    private fun getBooksRequest() {
+        CoroutineScope(Dispatchers.IO).launch {
+            val books = MyApi().getBook().await()
+            setRecycleView(books)
+        }
+    }
 
-        retrofitBooks.enqueue(object : Callback<List<BookItem>?> {
-            override fun onResponse(
-                call: Call<List<BookItem>?>,
-                response: Response<List<BookItem>?>
-            ) {
-                val responseBody = response.body()!!
-                val layoutManager = LinearLayoutManager(context)
-                recyclerView = view!!.findViewById(R.id.recycle_view_user_books)
-                recyclerView.layoutManager = layoutManager
-                val usersBooksList = getUsersBooks(responseBody)
-                bookAdapter = BookAdapter(usersBooksList)
-                recyclerView.adapter = bookAdapter
-            }
-
-            override fun onFailure(call: Call<List<BookItem>?>, t: Throwable) {
-                Log.d("UserFragment", "onFailure: " + t.message)
-            }
-        })
+    private suspend fun setRecycleView(books: List<BookItem>){
+        withContext(Dispatchers.Main){
+            val layoutManager = LinearLayoutManager(context)
+            recyclerView = requireView().findViewById(R.id.recycle_view_user_books)
+            recyclerView.layoutManager = layoutManager
+            val usersBooksList = getUsersBooks(books)
+            bookAdapter = BookAdapter(usersBooksList)
+            recyclerView.adapter = bookAdapter
+        }
     }
 
     private fun getUsersBooks(bookList: List<BookItem>): List<BookItem>{
@@ -73,9 +76,4 @@ class UserFragment : Fragment() {
         }
         return resultList
     }
-
-    private fun setMessage(){
-        text_view_user_panel.text = "Witaj ${getUsernameById(userId)}, oto Twoje książki:"
-    }
-
 }
