@@ -9,6 +9,7 @@ import com.nowiczenko.andrzej.activities.MenuActivity
 import com.nowiczenko.andrzej.activities.RegisterActivity
 import com.nowiczenko.andrzej.api.MyApi
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.no_internet_layout.*
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -23,22 +24,35 @@ lateinit var userName: String
 
 class MainActivity : AppCompatActivity() {
 
-    lateinit var users: List<UserItem>
+    private lateinit var users: List<UserItem>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        
 
-        getUsersRequest()
-        setListeners()
-
+        if(isOnline(this)){
+            setContentView(R.layout.activity_main)
+            getUsersRequest()
+            setListeners()
+        }else{
+            setContentView(R.layout.no_internet_layout)
+            setRefreshButtonListener()
+        }
     }
 
     override fun onStart() {
         super.onStart()
-        getUsersRequest()
-    }
+        if(isOnline(this)){
+            setContentView(R.layout.activity_main)
+            getUsersRequest()
+            setListeners()
+        }else{
+            setContentView(R.layout.no_internet_layout)
+            setRefreshButtonListener()
+        }
 
+    }
 
     private fun getUsersRequest(){
         CoroutineScope(Dispatchers.IO).launch {
@@ -67,7 +81,7 @@ class MainActivity : AppCompatActivity() {
                     return@setOnClickListener
                 }
             }
-            Toast.makeText(this, "Nieprawidłowe dane logowanie", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, R.string.toast_invalid_login, Toast.LENGTH_SHORT).show()
 
         }
     }
@@ -78,6 +92,20 @@ class MainActivity : AppCompatActivity() {
             val registerIntent = Intent(this, RegisterActivity::class.java)
             startActivity(registerIntent)
 
+        }
+    }
+
+    private fun setRefreshButtonListener() {
+        button_refresh_internet_connection.setOnClickListener {
+            if (isOnline(this)) {
+                setContentView(R.layout.activity_main)
+                getUsersRequest()
+                setListeners()
+            } else {
+                setContentView(R.layout.no_internet_layout)
+                setRefreshButtonListener()
+                Toast.makeText(this, R.string.toast_no_connection, Toast.LENGTH_SHORT).show()
+            }
         }
     }
 }

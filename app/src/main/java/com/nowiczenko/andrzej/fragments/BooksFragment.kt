@@ -1,29 +1,28 @@
 package com.nowiczenko.andrzej.fragments
 
+import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.nowiczenko.andrzej.activities.BookDetailActivity
 import com.nowiczenko.andrzej.api.MyApi
 import com.nowiczenko.andrzej.biblioteka.*
+import kotlinx.android.synthetic.main.fragment_books.*
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
 import retrofit2.await
 
 
 class BooksFragment : Fragment() {
 
-    lateinit var bookAdapter: BookAdapter
-    lateinit var recyclerView: RecyclerView
+    private lateinit var bookAdapter: BookAdapter
+    private lateinit var recyclerView: RecyclerView
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -35,12 +34,16 @@ class BooksFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         getBooksRequest()
+        refreshApp()
     }
 
-    override fun onStart() {
-        super.onStart()
-        getBooksRequest()
+    private fun refreshApp(){
+        swipe_to_refresh.setOnRefreshListener {
+            getBooksRequest()
+            swipe_to_refresh.isRefreshing = false
+        }
     }
+
 
     private fun getBooksRequest(){
         CoroutineScope(Dispatchers.IO).launch {
@@ -55,10 +58,17 @@ class BooksFragment : Fragment() {
             recyclerView = requireView().findViewById(R.id.recycle_view_all_books)
             recyclerView.layoutManager = layoutManager
             recyclerView.setHasFixedSize(true)
-            bookAdapter = BookAdapter(books)
+            val finalList = books.asReversed()
+            bookAdapter = BookAdapter(finalList){ book ->
+                val intent = Intent(activity, BookDetailActivity::class.java)
+                intent.putExtra("book", book)
+                activity?.startActivity(intent)
+            }
             recyclerView.adapter = bookAdapter
         }
     }
+
+
 }
 
 

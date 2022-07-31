@@ -4,8 +4,10 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Users/pchmi/Desktop/Android kurs/Biblioteka/app/src/main/res/drawable/ic_baseline_dashboard_24.xml" value="0.1" />
+        <entry key="..\:/Users/pchmi/Desktop/Android kurs/Biblioteka/app/src/main/res/drawable/ic_baseline_more.xml" value="0.218" />
         <entry key="..\:/Users/pchmi/Desktop/Android kurs/Biblioteka/app/src/main/res/drawable/ic_baseline_view_list_24.xml" value="0.1" />
-        <entry key="..\:/Users/pchmi/Desktop/Android kurs/Biblioteka/app/src/main/res/layout/activity_add_new_book.xml" value="0.48824343015214383" />
+        <entry key="..\:/Users/pchmi/Desktop/Android kurs/Biblioteka/app/src/main/res/layout/activity_add_new_book.xml" value="0.33" />
+        <entry key="..\:/Users/pchmi/Desktop/Android kurs/Biblioteka/app/src/main/res/layout/activity_book_detail.xml" value="0.33" />
         <entry key="..\:/Users/pchmi/Desktop/Android kurs/Biblioteka/app/src/main/res/layout/activity_book_list.xml" value="0.1" />
         <entry key="..\:/Users/pchmi/Desktop/Android kurs/Biblioteka/app/src/main/res/layout/activity_main.xml" value="0.25" />
         <entry key="..\:/Users/pchmi/Desktop/Android kurs/Biblioteka/app/src/main/res/layout/activity_menu.xml" value="0.22" />
@@ -17,6 +19,7 @@
         <entry key="..\:/Users/pchmi/Desktop/Android kurs/Biblioteka/app/src/main/res/layout/fragment_date_picker.xml" value="0.1" />
         <entry key="..\:/Users/pchmi/Desktop/Android kurs/Biblioteka/app/src/main/res/layout/fragment_dialog.xml" value="0.1" />
         <entry key="..\:/Users/pchmi/Desktop/Android kurs/Biblioteka/app/src/main/res/layout/fragment_user.xml" value="0.30715532286212915" />
+        <entry key="..\:/Users/pchmi/Desktop/Android kurs/Biblioteka/app/src/main/res/layout/no_internet_layout.xml" value="0.25" />
         <entry key="..\:/Users/pchmi/Desktop/Android kurs/Biblioteka/app/src/main/res/layout/row_items.xml" value="0.33" />
         <entry key="..\:/Users/pchmi/Desktop/Android kurs/Biblioteka/app/src/main/res/menu/menu.xml" value="0.25" />
       </map>

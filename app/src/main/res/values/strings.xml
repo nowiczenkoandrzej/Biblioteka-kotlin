@@ -1,6 +1,43 @@
 <resources>
     <string name="app_name">Biblioteka</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="toast_pick_picture">Musisz wybrać obraz</string>
+    <string name="toast_pick_title">Musisz podać tytuł książki</string>
+    <string name="toast_pick_author">Musisz podać autora książki</string>
+    <string name="toast_pick_publisher">Musisz podać wydawcę książki</string>
+    <string name="toast_pick_date">Musisz podać datę wydania książki</string>
+    <string name="toast_pick_amount_of_pages">Musisz podać ilość stron</string>
+    <string name="toast_creating_account">Tworzenie konta</string>
+    <string name="toast_login_taken">Podany login jest zajęty</string>
+    <string name="toast_pick_login">Musisz podać login</string>
+    <string name="toast_not_same_passwords">Podane hasła nie są identyczne</string>
+    <string name="toast_pick_passwords">Musisz wprowadzić hasła</string>
+    <string name="toast_invalid_login">Nieprawidłowe dane logowanie</string>
+    <string name="toast_no_connection">Brak polączenia</string>
+
+    <string name="user_no_books">nie dodałeś jeszcze żadnej książki</string>
+    <string name="user_your_books">oto twoje książki:</string>
+
+    <string name="detail_cover_type">Rodzaj okładki</string>
+    <string name="detail_publisher">Wydawnictwo</string>
+    <string name="detail_release_date">Data wydania</string>
+    <string name="detail_publishing_date">Data publikacji</string>
+    <string name="detail_amount_of_pages">Ilość stron</string>
+    <string name="detail_added_by">Dodano przez</string>
+    <string name="detail_author">Autor</string>
+    <string name="detail_title">Tytuł</string>
+
+    <string name="text_add_new_book">Dodaj nową książkę</string>
+    <string name="text_login">Login</string>
+    <string name="text_password">Hasło</string>
+    <string name="text_log_in">Zaloguj</string>
+    <string name="text_create_account">Załóż konto</string>
+    <string name="text_register">Rejestracja</string>
+    <string name="text_pick_login">Podaj login</string>
+    <string name="text_pick_password">Podaj hasło</string>
+    <string name="text_repeat_password">Powtórz hasło</string>
+    <string name="text_no_internet_connection">Brak połączenia z internetem</string>
+
+    <string name="button_publish">Opublikuj</string>
+    <string name="button_refresh">Odśwież</string>
 </resources>

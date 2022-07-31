@@ -3,7 +3,8 @@
     package="com.nowiczenko.andrzej.biblioteka">
 
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
     <application
         android:allowBackup="true"
@@ -13,16 +14,21 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Biblioteka">
         <activity
+            android:name="com.nowiczenko.andrzej.activities.BookDetailActivity"
+            android:exported="false"
+            android:parentActivityName="com.nowiczenko.andrzej.activities.MenuActivity"/>
+        <activity
             android:name="com.nowiczenko.andrzej.activities.MenuActivity"
             android:exported="false"
-            android:parentActivityName=".MainActivity"/>
+            android:parentActivityName=".MainActivity" />
         <activity
             android:name="com.nowiczenko.andrzej.activities.RegisterActivity"
             android:exported="false"
             android:parentActivityName=".MainActivity" />
         <activity
             android:name="com.nowiczenko.andrzej.activities.AddNewBookActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:parentActivityName="com.nowiczenko.andrzej.activities.MenuActivity"/>
         <activity
             android:name=".MainActivity"
             android:exported="true">

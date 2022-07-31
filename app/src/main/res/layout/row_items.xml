@@ -35,31 +35,20 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/text_view_book_title"
-            android:layout_marginTop="6dp"
+            android:layout_marginTop="12dp"
             android:layout_toEndOf="@+id/image_view_cover"
             android:fontFamily="sans-serif-light"
             android:textColor="#444444"
             android:textSize="16sp"
             tools:text="Book's Author" />
 
-        <TextView
-            android:id="@+id/text_view_book_cover"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/text_view_book_author"
-            android:layout_marginTop="6dp"
-            android:layout_toEndOf="@id/image_view_cover"
-            android:fontFamily="sans-serif-light"
-            android:textColor="#444444"
-            android:textSize="16sp"
-            tools:text="Cover" />
 
         <TextView
             android:id="@+id/text_view_book_publisher"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/text_view_book_cover"
-            android:layout_marginTop="6dp"
+            android:layout_below="@id/text_view_book_author"
+            android:layout_marginTop="8dp"
             android:layout_toEndOf="@id/image_view_cover"
             android:fontFamily="sans-serif-light"
             android:textColor="#444444"
@@ -71,31 +60,21 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/text_view_book_publisher"
-            android:layout_marginTop="6dp"
+            android:layout_marginTop="8dp"
             android:layout_toEndOf="@id/image_view_cover"
             android:fontFamily="sans-serif-light"
             android:textColor="#444444"
             android:textSize="16sp"
             tools:text="date of release" />
 
-        <TextView
-            android:id="@+id/text_view_publishing_date"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/text_view_release_date"
-            android:layout_marginTop="6dp"
-            android:layout_toEndOf="@id/image_view_cover"
-            android:fontFamily="sans-serif-light"
-            android:textColor="#444444"
-            android:textSize="16sp"
-            tools:text="date of publishing" />
+
 
         <TextView
             android:id="@+id/text_view_amount_of_pages"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/text_view_publishing_date"
-            android:layout_marginTop="6dp"
+            android:layout_below="@+id/text_view_release_date"
+            android:layout_marginTop="8dp"
             android:layout_toEndOf="@id/image_view_cover"
             android:fontFamily="sans-serif-light"
             android:textColor="#444444"
@@ -107,13 +86,21 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/text_view_amount_of_pages"
-            android:layout_marginTop="6dp"
+            android:layout_marginTop="8dp"
             android:layout_marginBottom="10dp"
             android:layout_toEndOf="@id/image_view_cover"
             android:fontFamily="sans-serif-light"
             android:textColor="#444444"
             android:textSize="16sp"
             tools:text="Added by: " />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:src="@drawable/ic_baseline_more"
+            android:layout_alignBottom="@+id/image_view_cover"
+            android:layout_alignParentEnd="true"/>
 
     </RelativeLayout>
 

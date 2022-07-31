@@ -1,64 +1,60 @@
-<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:elevation="16dp"
-    app:cardBackgroundColor="#B2DFDB"
+    android:background="#B2DFDB"
     app:cardCornerRadius="8dp"
     tools:context="com.nowiczenko.andrzej.activities.AddNewBookActivity">
-
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
 
         <TextView
             android:id="@+id/text_view_add_new_book"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="30dp"
             android:fontFamily="sans-serif-medium"
-            android:text="Dodaj nową książkę"
+            android:text="@string/text_add_new_book"
             android:textSize="32sp" />
 
         <View
-            android:layout_below="@+id/text_view_add_new_book"
             android:layout_width="match_parent"
-            android:layout_margin="20dp"
             android:layout_height="1dp"
-            android:background="@android:color/darker_gray"/>
+            android:layout_below="@+id/text_view_add_new_book"
+            android:layout_margin="20dp"
+            android:background="@android:color/darker_gray" />
 
         <androidx.cardview.widget.CardView
             android:id="@+id/card_view_book_cover"
             android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/text_view_add_new_book"
             android:layout_marginStart="8dp"
             android:layout_marginTop="40dp"
-            app:cardBackgroundColor="#4DB6AC"
-            app:cardCornerRadius="8dp"
             android:elevation="4dp"
-            android:layout_below="@+id/text_view_add_new_book"
-            android:layout_height="wrap_content">
+            app:cardBackgroundColor="#4DB6AC"
+            app:cardCornerRadius="8dp">
 
             <ImageView
                 android:id="@+id/image_view_add_new_book"
                 android:layout_width="160dp"
-                android:layout_margin="4dp"
                 android:layout_height="232dp"
+                android:layout_margin="4dp"
                 android:src="@drawable/ic_baseline_add_a_photo" />
         </androidx.cardview.widget.CardView>
 
         <EditText
+
             android:id="@+id/edit_text_books_title"
             android:layout_width="match_parent"
-            android:layout_alignTop="@+id/card_view_book_cover"
             android:layout_height="wrap_content"
             android:layout_below="@+id/text_view_add_new_book"
+            android:layout_alignTop="@+id/card_view_book_cover"
             android:layout_marginStart="8dp"
             android:layout_marginEnd="8dp"
             android:layout_toEndOf="@+id/card_view_book_cover"
-            android:hint="Podaj tytuł książki"
+            android:hint="@string/detail_title"
             android:inputType="textCapWords" />
 
 
@@ -71,7 +67,7 @@
             android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
             android:layout_toEndOf="@+id/card_view_book_cover"
-            android:hint="Podaj autora książki"
+            android:hint="@string/detail_author"
             android:inputType="textCapWords" />
 
 
@@ -96,7 +92,7 @@
             android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
             android:layout_toEndOf="@+id/card_view_book_cover"
-            android:hint="Podaj wydawce książki"
+            android:hint="@string/detail_publisher"
             android:inputType="textCapWords" />
 
 
@@ -109,17 +105,17 @@
             android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
             android:layout_toEndOf="@+id/card_view_book_cover"
-            android:hint="Data Wydania"
+            android:hint="@string/detail_release_date"
             android:textSize="18sp" />
 
         <View
-            android:layout_below="@+id/text_view_date_of_release"
             android:layout_width="match_parent"
-            android:layout_toEndOf="@id/card_view_book_cover"
             android:layout_height="1dp"
+            android:layout_below="@+id/text_view_date_of_release"
             android:layout_marginStart="12dp"
             android:layout_marginEnd="12dp"
-            android:background="#433F3F"/>
+            android:layout_toEndOf="@id/card_view_book_cover"
+            android:background="#433F3F" />
 
 
         <EditText
@@ -131,17 +127,17 @@
             android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
             android:layout_toEndOf="@+id/card_view_book_cover"
-            android:hint="Ilość stron"
+            android:hint="@string/detail_amount_of_pages"
             android:inputType="number" />
 
         <View
-            android:layout_below="@+id/edit_text_amount_of_pages"
             android:layout_width="match_parent"
-            android:layout_marginStart="20dp"
-            android:layout_marginEnd="20dp"
-            android:layout_marginTop="40dp"
             android:layout_height="1dp"
-            android:background="@android:color/darker_gray"/>
+            android:layout_below="@+id/edit_text_amount_of_pages"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="40dp"
+            android:layout_marginEnd="20dp"
+            android:background="@android:color/darker_gray" />
 
 
         <Button
@@ -152,8 +148,6 @@
             android:layout_alignStart="@+id/card_view_book_cover"
             android:layout_alignEnd="@id/card_view_book_cover"
             android:layout_marginTop="12dp"
-            android:text="Opublikuj" />
-    </RelativeLayout>
+            android:text="@string/button_publish" />
 
-
-</androidx.cardview.widget.CardView>
+</RelativeLayout>

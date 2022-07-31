@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#00474A"
+    tools:context="com.nowiczenko.andrzej.activities.BookDetailActivity">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/image_view_book_detail"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_margin="12dp"
+            android:scaleType="centerCrop"
+            app:layout_constraintBottom_toTopOf="@id/line"
+            app:layout_constraintDimensionRatio="h,4:6"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:src="@drawable/ic_baseline_add_a_photo" />
+
+        <View
+            android:id="@+id/line"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_margin="12dp"
+            android:background="#81D4FA"
+            app:layout_constraintBottom_toTopOf="@id/text_view_book_detail_title"
+            app:layout_constraintTop_toBottomOf="@id/image_view_book_detail" />
+
+        <TextView
+            android:id="@+id/text_view_book_detail_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_marginStart="24dp"
+            android:layout_marginEnd="24dp"
+            android:textColor="#E1BEE7"
+            android:textSize="36sp"
+            app:layout_constraintBottom_toTopOf="@id/text_view_book_detail_author"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/line"
+            tools:text="Tytuł" />
+
+        <TextView
+            android:id="@+id/text_view_book_detail_author"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:layout_marginStart="24dp"
+            android:layout_marginEnd="24dp"
+            android:fontFamily="sans-serif-light"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            app:layout_constraintBottom_toTopOf="@id/text_view_book_detail_book_cover"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/text_view_book_detail_title"
+            tools:text="Author" />
+
+        <TextView
+            android:id="@+id/text_view_book_detail_book_cover"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginEnd="24dp"
+            android:layout_marginTop="20dp"
+            android:fontFamily="sans-serif-light"
+            android:textColor="@color/white"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toTopOf="@id/text_view_book_detail_publisher"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/text_view_book_detail_author"
+            tools:text="Book cover" />
+
+        <TextView
+            android:id="@+id/text_view_book_detail_publisher"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginEnd="24dp"
+            android:layout_marginTop="16dp"
+            android:fontFamily="sans-serif-light"
+            android:textColor="@color/white"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toTopOf="@id/text_view_book_detail_release_date"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/text_view_book_detail_book_cover"
+            tools:text="Publisher" />
+
+        <TextView
+            android:id="@+id/text_view_book_detail_release_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_marginStart="24dp"
+            android:layout_marginEnd="24dp"
+            android:fontFamily="sans-serif-light"
+            android:textColor="@color/white"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toTopOf="@id/text_view_book_detail_publishing_date"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/text_view_book_detail_publisher"
+            tools:text="Release date" />
+
+        <TextView
+            android:id="@+id/text_view_book_detail_publishing_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginEnd="24dp"
+            android:layout_marginTop="16dp"
+            android:fontFamily="sans-serif-light"
+            android:textColor="@color/white"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toTopOf="@id/text_view_book_detail_amount_of_pages"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/text_view_book_detail_release_date"
+            tools:text="Publishing date" />
+
+        <TextView
+            android:id="@+id/text_view_book_detail_amount_of_pages"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_marginStart="24dp"
+            android:layout_marginEnd="24dp"
+            android:fontFamily="sans-serif-light"
+            android:textColor="@color/white"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toTopOf="@id/text_view_book_detail_added_by"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/text_view_book_detail_publishing_date"
+            tools:text="Amount of pages" />
+
+        <TextView
+            android:id="@+id/text_view_book_detail_added_by"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_marginStart="24dp"
+            android:layout_marginEnd="24dp"
+            android:fontFamily="sans-serif-light"
+            android:textColor="@color/white"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toTopOf="@id/line2"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/text_view_book_detail_amount_of_pages"
+            tools:text="Publishing date" />
+
+        <View
+            android:id="@+id/line2"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginStart="12dp"
+            android:layout_marginEnd="12dp"
+            android:layout_marginTop="24dp"
+            android:layout_marginBottom="32dp"
+            android:background="#81D4FA"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/text_view_book_detail_added_by" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</ScrollView>

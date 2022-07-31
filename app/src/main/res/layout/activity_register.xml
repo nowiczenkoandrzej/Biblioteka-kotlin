@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -16,7 +15,7 @@
         android:layout_centerInParent="true"
         android:layout_marginTop="80dp"
         android:fontFamily="sans-serif-medium"
-        android:text="Rejestracja"
+        android:text="@string/text_register"
         android:textColor="#444444"
         android:textSize="48sp" />
 
@@ -26,7 +25,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/text_view_register"
         android:layout_marginTop="80dp"
-        android:hint="Podaj login"
+        android:hint="@string/text_pick_login"
         android:paddingLeft="48dp"
         android:paddingRight="48dp">
 
@@ -46,7 +45,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/text_input_layout_register_login"
         android:layout_marginTop="12dp"
-        android:hint="Podaj hasło"
+        android:hint="@string/text_pick_password"
         android:paddingLeft="48dp"
         android:paddingRight="48dp">
 
@@ -66,7 +65,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/text_input_layout_register_password"
         android:layout_marginTop="12dp"
-        android:hint="Powtórz hasło"
+        android:hint="@string/text_repeat_password"
         android:paddingLeft="48dp"
         android:paddingRight="48dp">
 
@@ -88,7 +87,7 @@
         android:layout_centerInParent="true"
         android:layout_marginTop="40dp"
         android:layout_marginEnd="48dp"
-        android:text="Załóż konto"
+        android:text="@string/text_create_account"
         >
 
 

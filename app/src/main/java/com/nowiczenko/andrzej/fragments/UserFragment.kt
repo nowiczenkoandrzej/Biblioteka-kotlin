@@ -1,5 +1,6 @@
 package com.nowiczenko.andrzej.fragments
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -7,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.nowiczenko.andrzej.activities.BookDetailActivity
 import com.nowiczenko.andrzej.api.MyApi
 import com.nowiczenko.andrzej.biblioteka.*
 import kotlinx.android.synthetic.main.fragment_user.*
@@ -38,7 +40,9 @@ class UserFragment : Fragment() {
     override fun onStart() {
         super.onStart()
         getBooksRequest()
+
     }
+
 
     private fun getBooksRequest() {
         CoroutineScope(Dispatchers.IO).launch {
@@ -53,9 +57,15 @@ class UserFragment : Fragment() {
             recyclerView = requireView().findViewById(R.id.recycle_view_user_books)
             recyclerView.layoutManager = layoutManager
             val usersBooksList = getUsersBooks(books)
-            bookAdapter = BookAdapter(usersBooksList)
+            bookAdapter = BookAdapter(usersBooksList){ book ->
+
+                val intent = Intent(activity, BookDetailActivity::class.java)
+                intent.putExtra("book", book)
+                activity?.startActivity(intent)
+
+            }
+
             recyclerView.adapter = bookAdapter
-            recyclerView.isNestedScrollingEnabled
         }
     }
 
@@ -74,11 +84,11 @@ class UserFragment : Fragment() {
     private fun setMessage(){
         val textEnding =
             if(isListEmpty)
-                "nie dodałeś jeszcze żadnej książki"
+                getString(R.string.user_no_books)
             else
-                "oto twoje książki:"
+                getString(R.string.user_your_books)
 
-        text_view_user_panel.text = "Witaj ${getUsernameById(userId)}, $textEnding"
+        text_view_user_panel.text = "Witaj ${getUsernameById(userId)}, ${textEnding}"
     }
 
 }

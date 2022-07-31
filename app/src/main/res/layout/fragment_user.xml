@@ -7,8 +7,6 @@
     android:layout_height="match_parent"
     tools:context="com.nowiczenko.andrzej.fragments.UserFragment">
 
-
-
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
@@ -36,7 +34,6 @@
             android:id="@+id/recycle_view_user_books"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_below="@+id/text_view_user_panel"
             android:background="#B2DFDB"
             android:orientation="vertical"
             tools:listitem="@layout/row_items" />

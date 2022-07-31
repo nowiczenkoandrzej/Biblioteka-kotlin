@@ -2,10 +2,12 @@ package com.nowiczenko.andrzej.biblioteka
 
 import android.annotation.SuppressLint
 import android.content.ContentResolver
+import android.content.Context
+import android.net.ConnectivityManager
+import android.net.NetworkCapabilities
 import android.net.Uri
 import android.provider.OpenableColumns
-import android.view.View
-import com.google.android.material.snackbar.Snackbar
+import android.util.Log
 import com.nowiczenko.andrzej.api.MyApi
 import retrofit2.Call
 import retrofit2.Callback
@@ -22,19 +24,6 @@ fun ContentResolver.getFileName(uri: Uri): String {
     }
     return name
 }
-
-fun View.snackbar(message: String){
-    Snackbar.make(
-        this,
-        message,
-        Snackbar.LENGTH_LONG
-    ).also { snackbar ->
-        snackbar.setAction("Ok"){
-            snackbar.dismiss()
-        }.show()
-    }
-}
-
 
 var userNameMap = HashMap<Int, String>()
 fun getUsernameById(id: String): String{
@@ -65,4 +54,26 @@ fun getUsernameById(id: String): String{
     }
 
     return result
+}
+
+fun isOnline(context: Context): Boolean {
+    val connectivityManager =
+        context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+    if (connectivityManager != null) {
+        val capabilities =
+            connectivityManager.getNetworkCapabilities(connectivityManager.activeNetwork)
+        if (capabilities != null) {
+            if (capabilities.hasTransport(NetworkCapabilities.TRANSPORT_CELLULAR)) {
+                Log.i("Internet", "NetworkCapabilities.TRANSPORT_CELLULAR")
+                return true
+            } else if (capabilities.hasTransport(NetworkCapabilities.TRANSPORT_WIFI)) {
+                Log.i("Internet", "NetworkCapabilities.TRANSPORT_WIFI")
+                return true
+            } else if (capabilities.hasTransport(NetworkCapabilities.TRANSPORT_ETHERNET)) {
+                Log.i("Internet", "NetworkCapabilities.TRANSPORT_ETHERNET")
+                return true
+            }
+        }
+    }
+    return false
 }

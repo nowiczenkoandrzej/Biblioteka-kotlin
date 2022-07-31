@@ -6,7 +6,6 @@ import android.content.Intent
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.View
 import android.widget.ArrayAdapter
 import android.widget.Toast
 import com.nowiczenko.andrzej.api.MyApi
@@ -84,7 +83,7 @@ class AddNewBookActivity : AppCompatActivity(), UploadRequestBody.UploadCallback
 
     private fun uploadBook(){
         if(imageUri == null){
-            Toast.makeText(this, "Musisz wybrać obraz", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, R.string.toast_pick_picture, Toast.LENGTH_SHORT).show()
             return
         }
 
@@ -147,23 +146,23 @@ class AddNewBookActivity : AppCompatActivity(), UploadRequestBody.UploadCallback
 
     private fun postValidation(): Boolean{
         if(edit_text_books_title.text.toString() == ""){
-            Toast.makeText(this, "Musisz podać tytuł książki", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, R.string.toast_pick_title, Toast.LENGTH_SHORT).show()
             return false
         }
         if(edit_text_books_author.text.toString() == ""){
-            Toast.makeText(this, "Musisz podać autora książki", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, R.string.toast_pick_author, Toast.LENGTH_SHORT).show()
             return false
         }
         if(edit_text_books_publisher.text.toString() == ""){
-            Toast.makeText(this, "Musisz podać wydawcę książki", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, R.string.toast_pick_publisher, Toast.LENGTH_SHORT).show()
             return false
         }
         if(text_view_date_of_release.text.toString() == ""){
-            Toast.makeText(this, "Musisz podać datę wydania książki", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, R.string.toast_pick_date, Toast.LENGTH_SHORT).show()
             return false
         }
         if(edit_text_amount_of_pages.text.toString() == ""){
-            Toast.makeText(this, "Musisz podać ilość stron", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, R.string.toast_pick_amount_of_pages, Toast.LENGTH_SHORT).show()
             return false
         }
 

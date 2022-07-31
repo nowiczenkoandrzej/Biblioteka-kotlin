@@ -4,12 +4,19 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recycle_view_all_books"
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="#B2DFDB"
-        android:orientation="vertical"
-        tools:listitem="@layout/row_items" />
+        android:layout_height="wrap_content"
+        android:id="@+id/swipe_to_refresh">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycle_view_all_books"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#B2DFDB"
+            android:orientation="vertical"
+            tools:listitem="@layout/row_items" />
+
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
 </FrameLayout>

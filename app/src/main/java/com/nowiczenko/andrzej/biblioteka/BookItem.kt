@@ -1,5 +1,7 @@
 package com.nowiczenko.andrzej.biblioteka
 
+import java.io.Serializable
+
 data class BookItem(
     val amountOfPages: Int,
     val author: String,
@@ -11,4 +13,4 @@ data class BookItem(
     val publisher: String,
     val title: String,
     val user: Int
-)
+): Serializable

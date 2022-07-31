@@ -10,9 +10,6 @@ import kotlinx.android.synthetic.main.activity_register.*
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
 import retrofit2.await
 
 
@@ -30,7 +27,7 @@ class RegisterActivity : AppCompatActivity() {
 
     private fun createAccount(){
         if(isUserNameFree() && arePasswordsSame()) {
-            Toast.makeText(this, "tworzenie konta", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, R.string.toast_creating_account, Toast.LENGTH_SHORT).show()
             registerRequest()
         }
     }
@@ -39,13 +36,13 @@ class RegisterActivity : AppCompatActivity() {
         if(edit_text_register_login.text.toString() != "") {
             for(user in users){
                 if (user.username.equals(edit_text_register_login.text.toString())){
-                    Toast.makeText(this, "Podany Login jest zajęty", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this, R.string.toast_login_taken, Toast.LENGTH_SHORT).show()
                     return false
                 }
             }
             return true
         } else {
-            Toast.makeText(this, "Musisz podać login", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, R.string.toast_pick_login, Toast.LENGTH_SHORT).show()
             return false
         }
     }
@@ -55,12 +52,12 @@ class RegisterActivity : AppCompatActivity() {
             if(edit_text_register_password.text.toString().equals(edit_text_register_repeat_password.text.toString()))
                 return true
             else {
-                Toast.makeText(this, "Podane hasła nie są identyczne", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, R.string.toast_not_same_passwords, Toast.LENGTH_SHORT).show()
                 return false
             }
 
         else {
-            Toast.makeText(this, "Musisz wprowadzić hasła", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, R.string.toast_pick_passwords, Toast.LENGTH_SHORT).show()
             return false
         }
     }
