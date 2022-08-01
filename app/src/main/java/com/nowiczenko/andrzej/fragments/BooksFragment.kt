@@ -8,9 +8,11 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.nowiczenko.andrzej.activities.BookDetailActivity
+import com.nowiczenko.andrzej.biblioteka.BookDetailActivity
 import com.nowiczenko.andrzej.api.MyApi
 import com.nowiczenko.andrzej.biblioteka.*
+import com.nowiczenko.andrzej.otherClasses.BookAdapter
+import com.nowiczenko.andrzej.otherClasses.BookItem
 import kotlinx.android.synthetic.main.fragment_books.*
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers

@@ -1,4 +1,4 @@
-package com.nowiczenko.andrzej.biblioteka
+package com.nowiczenko.andrzej.otherClasses
 
 import java.io.Serializable
 

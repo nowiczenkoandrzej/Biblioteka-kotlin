@@ -6,7 +6,7 @@
     android:elevation="16dp"
     android:background="#B2DFDB"
     app:cardCornerRadius="8dp"
-    tools:context="com.nowiczenko.andrzej.activities.AddNewBookActivity">
+    tools:context=".AddNewBookActivity">
 
         <TextView
             android:id="@+id/text_view_add_new_book"

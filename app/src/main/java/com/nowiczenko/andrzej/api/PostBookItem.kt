@@ -10,7 +10,7 @@ data class PostBookItem(
     @SerializedName("publisher")val publisher: String,
     @SerializedName("dateOfRelease")val dateOfPublishing: String,
     @SerializedName("dateOfPublishing")val dateOfRelease: String,
-    @SerializedName("amountOfPages")val amountOfPages: Int,
+    @SerializedName("amountOfPages")val amountOfPages: String,
     @SerializedName("image")val image: File,
-    @SerializedName("user")val user: Int
+    @SerializedName("user")val user: String
 )

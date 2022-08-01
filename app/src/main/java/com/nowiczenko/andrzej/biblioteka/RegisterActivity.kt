@@ -1,11 +1,10 @@
-package com.nowiczenko.andrzej.activities
+package com.nowiczenko.andrzej.biblioteka
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
 import com.nowiczenko.andrzej.api.MyApi
-import com.nowiczenko.andrzej.biblioteka.R
-import com.nowiczenko.andrzej.biblioteka.UserItem
+import com.nowiczenko.andrzej.otherClasses.UserItem
 import kotlinx.android.synthetic.main.activity_register.*
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -78,7 +77,8 @@ class RegisterActivity : AppCompatActivity() {
     private fun registerRequest(){
         CoroutineScope(Dispatchers.IO).launch {
             MyApi()
-                .pushUser(UserItem(
+                .pushUser(
+                    UserItem(
                     0,
                     edit_text_register_password.text.toString()
                     , edit_text_register_login.text.toString())

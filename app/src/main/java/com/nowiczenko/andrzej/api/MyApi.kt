@@ -1,8 +1,8 @@
 package com.nowiczenko.andrzej.api
 
 import com.nowiczenko.andrzej.biblioteka.BASE_URL
-import com.nowiczenko.andrzej.biblioteka.BookItem
-import com.nowiczenko.andrzej.biblioteka.UserItem
+import com.nowiczenko.andrzej.otherClasses.BookItem
+import com.nowiczenko.andrzej.otherClasses.UserItem
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import retrofit2.Call
@@ -35,6 +35,12 @@ interface MyApi {
     @POST("adduser/")
     fun pushUser(@Body user: UserItem): Call<UserItem>
 
+
+    @PUT("bookdetail/{id}/")
+    fun updateBook(
+        @Path("id")id : Int,
+        @Body book: UpdateBook
+    ): Call<UpdateBook>
 
     companion object{
         operator fun invoke(): MyApi{

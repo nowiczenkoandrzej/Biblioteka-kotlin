@@ -9,6 +9,7 @@ import android.net.Uri
 import android.provider.OpenableColumns
 import android.util.Log
 import com.nowiczenko.andrzej.api.MyApi
+import com.nowiczenko.andrzej.otherClasses.UserItem
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response

@@ -5,10 +5,12 @@
       <map>
         <entry key="..\:/Users/pchmi/Desktop/Android kurs/Biblioteka/app/src/main/res/drawable/ic_baseline_dashboard_24.xml" value="0.1" />
         <entry key="..\:/Users/pchmi/Desktop/Android kurs/Biblioteka/app/src/main/res/drawable/ic_baseline_more.xml" value="0.218" />
+        <entry key="..\:/Users/pchmi/Desktop/Android kurs/Biblioteka/app/src/main/res/drawable/ic_baseline_settings.xml" value="0.2345" />
         <entry key="..\:/Users/pchmi/Desktop/Android kurs/Biblioteka/app/src/main/res/drawable/ic_baseline_view_list_24.xml" value="0.1" />
         <entry key="..\:/Users/pchmi/Desktop/Android kurs/Biblioteka/app/src/main/res/layout/activity_add_new_book.xml" value="0.33" />
         <entry key="..\:/Users/pchmi/Desktop/Android kurs/Biblioteka/app/src/main/res/layout/activity_book_detail.xml" value="0.33" />
         <entry key="..\:/Users/pchmi/Desktop/Android kurs/Biblioteka/app/src/main/res/layout/activity_book_list.xml" value="0.1" />
+        <entry key="..\:/Users/pchmi/Desktop/Android kurs/Biblioteka/app/src/main/res/layout/activity_edit.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/pchmi/Desktop/Android kurs/Biblioteka/app/src/main/res/layout/activity_main.xml" value="0.25" />
         <entry key="..\:/Users/pchmi/Desktop/Android kurs/Biblioteka/app/src/main/res/layout/activity_menu.xml" value="0.22" />
         <entry key="..\:/Users/pchmi/Desktop/Android kurs/Biblioteka/app/src/main/res/layout/activity_menu1.xml" value="0.1" />

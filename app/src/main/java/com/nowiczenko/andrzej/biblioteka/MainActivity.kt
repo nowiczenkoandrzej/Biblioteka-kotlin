@@ -5,14 +5,11 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
-import com.nowiczenko.andrzej.activities.MenuActivity
-import com.nowiczenko.andrzej.activities.RegisterActivity
 import com.nowiczenko.andrzej.api.MyApi
+import com.nowiczenko.andrzej.otherClasses.UserItem
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.no_internet_layout.*
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
+import kotlinx.coroutines.*
 import retrofit2.*
 
 
@@ -24,27 +21,26 @@ lateinit var userName: String
 
 class MainActivity : AppCompatActivity() {
 
-    private lateinit var users: List<UserItem>
+    private var users: List<UserItem>? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        
 
         if(isOnline(this)){
-            setContentView(R.layout.activity_main)
             getUsersRequest()
             setListeners()
+
         }else{
             setContentView(R.layout.no_internet_layout)
             setRefreshButtonListener()
         }
+
     }
 
     override fun onStart() {
         super.onStart()
         if(isOnline(this)){
-            setContentView(R.layout.activity_main)
             getUsersRequest()
             setListeners()
         }else{
@@ -54,10 +50,16 @@ class MainActivity : AppCompatActivity() {
 
     }
 
+
     private fun getUsersRequest(){
         CoroutineScope(Dispatchers.IO).launch {
-            users = MyApi().getUser().await()
+            users = networkCall()
         }
+
+    }
+
+    private suspend fun networkCall(): List<UserItem>{
+        return MyApi().getUser().await()
     }
 
     private fun loginValidation(user: UserItem): Boolean{
@@ -72,7 +74,12 @@ class MainActivity : AppCompatActivity() {
 
     private fun setLoginClickListener(){
         button_login.setOnClickListener {
-            for(user in users){
+
+            if(users == null){
+                Toast.makeText(this, "Poczekaj na polączenie z serwerem", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
+            for(user in users!!){
                 if (loginValidation(user)){
                     val intent = Intent(this, MenuActivity::class.java)
                     userId = user.id.toString()

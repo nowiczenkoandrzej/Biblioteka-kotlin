@@ -1,4 +1,4 @@
-package com.nowiczenko.andrzej.biblioteka
+package com.nowiczenko.andrzej.otherClasses
 
 
 import android.annotation.SuppressLint
@@ -8,6 +8,8 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.nowiczenko.andrzej.biblioteka.R
+import com.nowiczenko.andrzej.biblioteka.getUsernameById
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.row_items.view.*
 

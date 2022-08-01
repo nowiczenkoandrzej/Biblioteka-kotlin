@@ -1,22 +1,25 @@
-package com.nowiczenko.andrzej.activities
+package com.nowiczenko.andrzej.biblioteka
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.nowiczenko.andrzej.biblioteka.BookItem
-import com.nowiczenko.andrzej.biblioteka.R
-import com.nowiczenko.andrzej.biblioteka.getUsernameById
+import com.nowiczenko.andrzej.otherClasses.BookItem
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.activity_book_detail.*
 
 class BookDetailActivity : AppCompatActivity() {
 
+    private lateinit var book: BookItem
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_book_detail)
 
-        val book = intent.getSerializableExtra("book") as BookItem
+        book = intent.getSerializableExtra("book") as BookItem
         setContent(book)
+
+        setListeners()
     }
 
     @SuppressLint("SetTextI18n")
@@ -34,5 +37,14 @@ class BookDetailActivity : AppCompatActivity() {
             .get()
             .load(book.image)
             .into(image_view_book_detail)
+    }
+
+    private fun setListeners(){
+        book_edit.setOnClickListener {
+            Intent(this, EditActivity::class.java).also {
+                it.putExtra("book", book)
+                startActivity(it)
+            }
+        }
     }
 }

@@ -1,10 +1,9 @@
-package com.nowiczenko.andrzej.activities
+package com.nowiczenko.andrzej.biblioteka
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.fragment.app.Fragment
-import com.nowiczenko.andrzej.biblioteka.R
 import com.nowiczenko.andrzej.biblioteka.databinding.ActivityMainBinding
 import com.nowiczenko.andrzej.fragments.BooksFragment
 import com.nowiczenko.andrzej.fragments.UserFragment

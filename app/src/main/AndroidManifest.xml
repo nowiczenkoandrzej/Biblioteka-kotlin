@@ -14,21 +14,25 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Biblioteka">
         <activity
-            android:name="com.nowiczenko.andrzej.activities.BookDetailActivity"
+            android:name=".EditActivity"
             android:exported="false"
-            android:parentActivityName="com.nowiczenko.andrzej.activities.MenuActivity"/>
+            android:parentActivityName=".BookDetailActivity" />
         <activity
-            android:name="com.nowiczenko.andrzej.activities.MenuActivity"
+            android:name=".BookDetailActivity"
+            android:exported="false"
+            android:parentActivityName=".MenuActivity" />
+        <activity
+            android:name=".MenuActivity"
             android:exported="false"
             android:parentActivityName=".MainActivity" />
         <activity
-            android:name="com.nowiczenko.andrzej.activities.RegisterActivity"
+            android:name=".RegisterActivity"
             android:exported="false"
             android:parentActivityName=".MainActivity" />
         <activity
-            android:name="com.nowiczenko.andrzej.activities.AddNewBookActivity"
+            android:name=".AddNewBookActivity"
             android:exported="false"
-            android:parentActivityName="com.nowiczenko.andrzej.activities.MenuActivity"/>
+            android:parentActivityName=".MenuActivity" />
         <activity
             android:name=".MainActivity"
             android:exported="true">

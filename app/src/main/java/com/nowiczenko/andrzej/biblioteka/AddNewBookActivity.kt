@@ -1,4 +1,4 @@
-package com.nowiczenko.andrzej.activities
+package com.nowiczenko.andrzej.biblioteka
 
 
 import android.app.DatePickerDialog
@@ -6,14 +6,12 @@ import android.content.Intent
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.widget.ArrayAdapter
 import android.widget.Toast
 import com.nowiczenko.andrzej.api.MyApi
 import com.nowiczenko.andrzej.api.PostBookItem
 import com.nowiczenko.andrzej.api.UploadRequestBody
-import com.nowiczenko.andrzej.biblioteka.R
-import com.nowiczenko.andrzej.biblioteka.getFileName
-import com.nowiczenko.andrzej.biblioteka.userId
 import kotlinx.android.synthetic.main.activity_add_new_book.*
 import okhttp3.MediaType
 import okhttp3.MultipartBody
@@ -134,10 +132,12 @@ class AddNewBookActivity : AppCompatActivity(), UploadRequestBody.UploadCallback
                 call: Call<PostBookItem?>,
                 response: Response<PostBookItem?>
             ) {
+                Log.d("TAG", "response")
                 finish()
             }
 
             override fun onFailure(call: Call<PostBookItem?>, t: Throwable) {
+                Log.d("TAG", "failure")
                 finish()
             }
         })
