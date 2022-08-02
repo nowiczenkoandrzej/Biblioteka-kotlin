@@ -12,8 +12,15 @@ import retrofit2.http.*
 
 interface MyApi {
 
+    @GET("apiusers/")
+    fun getUser(): Call<List<UserItem>>
+
     @GET("apibooks/")
     fun getBook(): Call<List<BookItem>>
+
+
+    @POST("adduser/")
+    fun pushUser(@Body user: UserItem): Call<UserItem>
 
     @Multipart
     @POST("postbook/")
@@ -29,18 +36,19 @@ interface MyApi {
         @Part("user")user: RequestBody
     ): Call<PostBookItem>
 
-    @GET("apiusers/")
-    fun getUser(): Call<List<UserItem>>
-
-    @POST("adduser/")
-    fun pushUser(@Body user: UserItem): Call<UserItem>
-
 
     @PUT("bookdetail/{id}/")
     fun updateBook(
         @Path("id")id : Int,
         @Body book: UpdateBook
     ): Call<UpdateBook>
+
+
+    @DELETE("bookdetail/{id}/")
+    fun deleteBook(
+        @Path("id")id : Int
+    ): Call<Void>
+
 
     companion object{
         operator fun invoke(): MyApi{

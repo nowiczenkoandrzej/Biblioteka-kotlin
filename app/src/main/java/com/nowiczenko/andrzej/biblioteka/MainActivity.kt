@@ -4,6 +4,7 @@ package com.nowiczenko.andrzej.biblioteka
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.widget.Toast
 import com.nowiczenko.andrzej.api.MyApi
 import com.nowiczenko.andrzej.otherClasses.UserItem
@@ -28,12 +29,13 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         if(isOnline(this)){
+            setContentView(R.layout.activity_main)
             getUsersRequest()
             setListeners()
 
         }else{
             setContentView(R.layout.no_internet_layout)
-            setRefreshButtonListener()
+            setRefreshListener()
         }
 
     }
@@ -41,15 +43,15 @@ class MainActivity : AppCompatActivity() {
     override fun onStart() {
         super.onStart()
         if(isOnline(this)){
+            setContentView(R.layout.activity_main)
             getUsersRequest()
             setListeners()
         }else{
             setContentView(R.layout.no_internet_layout)
-            setRefreshButtonListener()
+            setRefreshListener()
         }
 
     }
-
 
     private fun getUsersRequest(){
         CoroutineScope(Dispatchers.IO).launch {
@@ -109,8 +111,18 @@ class MainActivity : AppCompatActivity() {
                 getUsersRequest()
                 setListeners()
             } else {
-                setContentView(R.layout.no_internet_layout)
-                setRefreshButtonListener()
+                Toast.makeText(this, R.string.toast_no_connection, Toast.LENGTH_SHORT).show()
+            }
+        }
+    }
+
+    private fun setRefreshListener(){
+        button_refresh_internet_connection.setOnClickListener {
+            if(isOnline(this)){
+                setContentView(R.layout.activity_main)
+                getUsersRequest()
+                setListeners()
+            } else {
                 Toast.makeText(this, R.string.toast_no_connection, Toast.LENGTH_SHORT).show()
             }
         }

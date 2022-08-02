@@ -1,12 +1,21 @@
 package com.nowiczenko.andrzej.biblioteka
 
 import android.annotation.SuppressLint
+import android.content.DialogInterface
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
+import com.nowiczenko.andrzej.api.MyApi
 import com.nowiczenko.andrzej.otherClasses.BookItem
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.activity_book_detail.*
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.async
+import kotlinx.coroutines.launch
+import retrofit2.await
 
 class BookDetailActivity : AppCompatActivity() {
 
@@ -40,11 +49,58 @@ class BookDetailActivity : AppCompatActivity() {
     }
 
     private fun setListeners(){
+
+        setEditListener()
+        setDeleteListener()
+
+    }
+
+    private fun setEditListener(){
+
         book_edit.setOnClickListener {
+
+            if(!userId.equals(book.user.toString())){
+                Toast.makeText(this, R.string.toast_not_your_book, Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
+
             Intent(this, EditActivity::class.java).also {
                 it.putExtra("book", book)
                 startActivity(it)
             }
         }
+    }
+
+    private fun setDeleteListener(){
+
+        book_delete.setOnClickListener {
+
+            if(!userId.equals(book.user.toString())){
+                Toast.makeText(this, R.string.toast_not_your_book, Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
+
+            showDialog()
+        }
+    }
+
+    private fun showDialog(){
+        val dialog = AlertDialog.Builder(this)
+
+        dialog.setMessage("Czy na pewno chcesz to zrobić?")
+
+        dialog.setPositiveButton("Tak", DialogInterface.OnClickListener { dialog, which ->
+
+            CoroutineScope(Dispatchers.IO).async{
+                finish()
+                MyApi().deleteBook(book.id).await()
+            }
+
+        })
+
+        dialog.setNegativeButton("Nie", DialogInterface.OnClickListener { dialog, which ->
+            dialog.dismiss()
+        })
+        dialog.show()
     }
 }

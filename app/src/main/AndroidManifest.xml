@@ -14,6 +14,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Biblioteka">
         <activity
+            android:name=".DeleteActivity"
+            android:exported="false" />
+        <activity
             android:name=".EditActivity"
             android:exported="false"
             android:parentActivityName=".BookDetailActivity" />
