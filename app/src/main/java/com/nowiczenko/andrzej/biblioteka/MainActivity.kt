@@ -27,29 +27,17 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        setListeners()
 
-        if(isOnline(this)){
-            setContentView(R.layout.activity_main)
+        if(isOnline(this))
             getUsersRequest()
-            setListeners()
-
-        }else{
-            setContentView(R.layout.no_internet_layout)
-            setRefreshListener()
-        }
-
     }
 
     override fun onStart() {
         super.onStart()
-        if(isOnline(this)){
-            setContentView(R.layout.activity_main)
+
+        if (isOnline(this))
             getUsersRequest()
-            setListeners()
-        }else{
-            setContentView(R.layout.no_internet_layout)
-            setRefreshListener()
-        }
 
     }
 
@@ -76,9 +64,8 @@ class MainActivity : AppCompatActivity() {
 
     private fun setLoginClickListener(){
         button_login.setOnClickListener {
-
             if(users == null){
-                Toast.makeText(this, "Poczekaj na polączenie z serwerem", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, R.string.toast_wait_for_connection, Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
             for(user in users!!){
@@ -106,25 +93,12 @@ class MainActivity : AppCompatActivity() {
 
     private fun setRefreshButtonListener() {
         button_refresh_internet_connection.setOnClickListener {
-            if (isOnline(this)) {
+            if(isOnline(this)){
                 setContentView(R.layout.activity_main)
-                getUsersRequest()
-                setListeners()
             } else {
                 Toast.makeText(this, R.string.toast_no_connection, Toast.LENGTH_SHORT).show()
             }
         }
     }
 
-    private fun setRefreshListener(){
-        button_refresh_internet_connection.setOnClickListener {
-            if(isOnline(this)){
-                setContentView(R.layout.activity_main)
-                getUsersRequest()
-                setListeners()
-            } else {
-                Toast.makeText(this, R.string.toast_no_connection, Toast.LENGTH_SHORT).show()
-            }
-        }
-    }
 }
