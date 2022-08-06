@@ -17,9 +17,10 @@
         app:itemTextColor="#444444"
         app:itemIconTint="#444444"/>
     
-    <FrameLayout
+    <androidx.fragment.app.FragmentContainerView
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:name="com.nowiczenko.andrzej.fragments.BooksFragment"
         android:id="@+id/fragment_container"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toTopOf="@id/bottom_navigation"/>

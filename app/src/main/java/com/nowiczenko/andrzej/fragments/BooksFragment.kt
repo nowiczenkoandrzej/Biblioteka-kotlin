@@ -14,6 +14,7 @@ import com.nowiczenko.andrzej.biblioteka.*
 import com.nowiczenko.andrzej.otherClasses.BookAdapter
 import com.nowiczenko.andrzej.otherClasses.BookItem
 import kotlinx.android.synthetic.main.fragment_books.*
+import kotlinx.android.synthetic.main.fragment_books.view.*
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -30,22 +31,21 @@ class BooksFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_books, container, false)
+        val view = inflater.inflate(R.layout.fragment_books, container, false)
+
+        view.swipe_to_refresh.setOnRefreshListener {
+            getBooksRequest()
+            swipe_to_refresh.isRefreshing = false
+        }
+
+        recyclerView = view.findViewById(R.id.recycle_view_all_books)
+        return view
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         getBooksRequest()
-        refreshApp()
     }
-
-    private fun refreshApp(){
-        swipe_to_refresh.setOnRefreshListener {
-            getBooksRequest()
-            swipe_to_refresh.isRefreshing = false
-        }
-    }
-
 
     private fun getBooksRequest(){
         CoroutineScope(Dispatchers.IO).launch {
@@ -57,7 +57,6 @@ class BooksFragment : Fragment() {
     private suspend fun setRecyclerView(books: List<BookItem>){
         withContext(Dispatchers.Main){
             val layoutManager = LinearLayoutManager(context)
-            recyclerView = requireView().findViewById(R.id.recycle_view_all_books)
             recyclerView.layoutManager = layoutManager
             recyclerView.setHasFixedSize(true)
             val finalList = books.asReversed()

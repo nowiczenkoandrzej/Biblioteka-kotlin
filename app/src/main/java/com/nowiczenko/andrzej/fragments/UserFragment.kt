@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.nowiczenko.andrzej.biblioteka.BookDetailActivity
@@ -13,7 +14,6 @@ import com.nowiczenko.andrzej.api.MyApi
 import com.nowiczenko.andrzej.biblioteka.*
 import com.nowiczenko.andrzej.otherClasses.BookAdapter
 import com.nowiczenko.andrzej.otherClasses.BookItem
-import kotlinx.android.synthetic.main.fragment_user.*
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -25,13 +25,19 @@ class UserFragment : Fragment() {
 
     private lateinit var bookAdapter: BookAdapter
     private lateinit var recyclerView: RecyclerView
+    private lateinit var message: TextView
     private var isListEmpty = true
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_user, container, false)
+        val view = inflater.inflate(R.layout.fragment_user, container, false)
+
+        recyclerView = view.findViewById(R.id.recycle_view_user_books)
+        message = view.findViewById(R.id.text_view_user_panel)
+
+        return view
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -42,7 +48,6 @@ class UserFragment : Fragment() {
     override fun onStart() {
         super.onStart()
         getBooksRequest()
-
     }
 
 
@@ -54,9 +59,9 @@ class UserFragment : Fragment() {
     }
 
     private suspend fun setRecycleView(books: List<BookItem>){
+
         withContext(Dispatchers.Main){
             val layoutManager = LinearLayoutManager(context)
-            recyclerView = requireView().findViewById(R.id.recycle_view_user_books)
             recyclerView.layoutManager = layoutManager
             val usersBooksList = getUsersBooks(books)
             bookAdapter = BookAdapter(usersBooksList){ book ->
@@ -86,11 +91,11 @@ class UserFragment : Fragment() {
     private fun setMessage(){
         val textEnding =
             if(isListEmpty)
-                getString(R.string.user_no_books)
+                activity?.getString(R.string.user_no_books)
             else
-                getString(R.string.user_your_books)
+                activity?.getString(R.string.user_your_books)
 
-        text_view_user_panel.text = "Witaj ${getUsernameById(userId)}, ${textEnding}"
+        message.text = "Witaj ${getUsernameById(userId)}, ${textEnding}"
     }
 
 }
