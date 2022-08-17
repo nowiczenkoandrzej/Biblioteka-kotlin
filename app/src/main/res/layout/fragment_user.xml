@@ -36,7 +36,7 @@
             android:layout_height="match_parent"
             android:background="#B2DFDB"
             android:orientation="vertical"
-            tools:listitem="@layout/row_items" />
+            tools:listitem="@layout/book_item" />
 
 
     </LinearLayout>

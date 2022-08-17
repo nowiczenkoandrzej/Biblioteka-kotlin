@@ -7,7 +7,6 @@ import androidx.fragment.app.Fragment
 import com.nowiczenko.andrzej.biblioteka.databinding.ActivityMainBinding
 import com.nowiczenko.andrzej.fragments.BooksFragment
 import com.nowiczenko.andrzej.fragments.UserFragment
-import com.nowiczenko.andrzej.otherClasses.LyfecycleListener
 import kotlinx.android.synthetic.main.activity_menu.*
 
 
