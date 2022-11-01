@@ -4,9 +4,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:elevation="16dp"
-    android:background="@color/background_color"
+    android:background="@color/white"
     app:cardCornerRadius="8dp"
-    tools:context=".AddNewBookActivity">
+    tools:context=".ui.add_new_book.AddNewBookActivity">
 
     <TextView
         android:id="@+id/text_view_add_new_book"
@@ -33,7 +33,7 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="40dp"
         android:elevation="4dp"
-        app:cardBackgroundColor="#4DB6AC"
+        app:cardBackgroundColor="#AAAAAA"
         app:cardCornerRadius="8dp">
 
         <ImageView

@@ -7,6 +7,7 @@
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
     <application
+        android:name=".ui.BaseApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -14,30 +15,27 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Biblioteka">
         <activity
-            android:name=".DeleteActivity"
-            android:exported="false" />
-        <activity
-            android:name=".EditActivity"
+            android:name=".ui.edit_book.EditActivity"
             android:exported="false"
-            android:parentActivityName=".BookDetailActivity" />
+            android:parentActivityName=".ui.book_detail.BookDetailActivity" />
         <activity
-            android:name=".BookDetailActivity"
+            android:name=".ui.book_detail.BookDetailActivity"
             android:exported="false"
-            android:parentActivityName=".MenuActivity" />
+            android:parentActivityName=".ui.menu.MenuActivity" />
         <activity
-            android:name=".MenuActivity"
+            android:name=".ui.menu.MenuActivity"
             android:exported="false"
-            android:parentActivityName=".MainActivity" />
+            android:parentActivityName=".ui.login.LoginActivity" />
         <activity
-            android:name=".RegisterActivity"
+            android:name=".ui.register.RegisterActivity"
             android:exported="false"
-            android:parentActivityName=".MainActivity" />
+            android:parentActivityName=".ui.login.LoginActivity" />
         <activity
-            android:name=".AddNewBookActivity"
+            android:name=".ui.add_new_book.AddNewBookActivity"
             android:exported="false"
-            android:parentActivityName=".MenuActivity" />
+            android:parentActivityName=".ui.menu.MenuActivity" />
         <activity
-            android:name=".MainActivity"
+            android:name=".ui.login.LoginActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

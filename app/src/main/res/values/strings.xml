@@ -42,9 +42,10 @@
     <string name="text_edit_book">Edytuj książkę</string>
 
     <string name="button_publish">Opublikuj</string>
-    <string name="button_refresh">Odśwież</string>
+
 
     <string name="menu_user_panel">Profil</string>
     <string name="menu_books">Książki</string>
     <string name="menu_add_book">Dodaj książkę</string>
+    <string name="button_refresh">Odśwież</string>
 </resources>
