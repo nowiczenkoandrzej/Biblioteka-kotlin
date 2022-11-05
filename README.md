@@ -82,7 +82,7 @@ override suspend fun postBook(
 
 ## Hilt
 App is built using **dependency injection** pattern via **Hilt** library.
-App contains **AppModele** class where Retrofit reference is defined.
+App contains **AppModele** object where **Retrofit** reference is defined.
 
 ```kotlin
 @Module
@@ -97,12 +97,12 @@ object AppModule {
 
 }
 ```
-[Source code](https://github.com/nowiczenkoandrzej/Biblioteka-kotlin/blob/master/app/src/main/java/com/nowiczenko/andrzej/biblioteka/di/AppModule.kthttps://github.com/nowiczenkoandrzej/Biblioteka-kotlin/blob/master/app/src/main/java/com/nowiczenko/andrzej/biblioteka/repository/books/BookRepositoryImplementation.kt)
+[Source code](https://github.com/nowiczenkoandrzej/Biblioteka-kotlin/blob/master/app/src/main/java/com/nowiczenko/andrzej/biblioteka/di/AppModule.kt)
 
 
 &nbsp;
 
-There is also module for defining app's repositories which are scoped to ViewModels lifecycles.
+There is also module for creating app's repositories implementation  which are scoped to ViewModels lifecycles.
 ```kotlin
 @Module
 @InstallIn(ViewModelComponent::class)
@@ -129,5 +129,46 @@ abstract class RepositoryModule {
 
 
 ## Design patterns
+
+Beside **dependency injection** There are also others design patterns used while creating app such as:
+
+### Singleton
+There is one **singleton** used in app. It is single **Retrofit** instance.
+
+```kotlin 
+companion object{
+        operator fun invoke(): MyApi{
+            return Retrofit.Builder()
+                .addConverterFactory(GsonConverterFactory.create())
+                .baseUrl("https://biblioteka-gsoft.herokuapp.com/")
+                .build()
+                .create(MyApi::class.java)
+        }
+    }
+```
+[Source code](https://github.com/nowiczenkoandrzej/Biblioteka-kotlin/blob/master/app/src/main/java/com/nowiczenko/andrzej/biblioteka/retrofit/MyApi.kt)
+
+### Factory
+There is also **factory** pattern responsible for creating UI state and deciding what is and what is not displayed on the screen.
+```kotlin
+ lifecycleScope.launchWhenStarted {
+            repeatOnLifecycle(Lifecycle.State.STARTED){
+                viewModel.users.collect { event ->
+                    when(event){
+                        is StateEvent.Success<*> -> {
+                            setVisibility(true)
+                            users = event.result as List<UserItem>?
+                        }
+                        is StateEvent.Failure -> setVisibility(true)
+                        is StateEvent.Loading -> setVisibility(false)
+                        is StateEvent.Empty -> Unit
+                    }
+                }
+            }
+        }
+```
+[Source code](https://github.com/nowiczenkoandrzej/Biblioteka-kotlin/blob/master/app/src/main/java/com/nowiczenko/andrzej/biblioteka/ui/login/LoginActivity.kt)
+
+
 
 
